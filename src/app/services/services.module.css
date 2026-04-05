@@ -1,0 +1,244 @@
+/* ==========================================================================
+   SERVICES PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+/* --- Section 1: Page Hero --- */
+.pageHero {
+    padding-top: calc(var(--nav-height) + var(--space-16));
+    padding-bottom: var(--space-16);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.pageHeroGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .pageHeroGrid {
+        grid-template-columns: 55% 45%;
+    }
+}
+
+.pageHero h1 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+    margin-bottom: 0;
+}
+
+.sub {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin-top: var(--space-4);
+    margin-bottom: 0;
+}
+
+.heroCtas {
+    margin-top: var(--space-8);
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.pageHeroVisual {
+    display: none;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+    .pageHeroVisual {
+        display: flex;
+    }
+}
+
+/* --- Section 2: Services Detail --- */
+.srOnly {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.servicesDetail {
+    padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+}
+
+.serviceItem {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    padding-block: var(--space-12);
+    align-items: start;
+}
+
+@media (min-width: 641px) {
+    .serviceItem {
+        grid-template-columns: 80px 1fr;
+    }
+}
+
+.serviceItem:not(:last-child) {
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.serviceNum {
+    display: flex;
+    flex-direction: column;
+}
+
+.serviceNum span {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--color-text-faint);
+    line-height: 1;
+}
+
+.serviceNumIcon {
+    color: var(--color-primary);
+    margin-top: var(--space-3);
+}
+
+.serviceBody h3 {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-3);
+}
+
+.serviceBody p {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 65ch;
+    margin-bottom: var(--space-6);
+}
+
+.serviceDeliverables {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+    list-style: none; /* Already handled by global CSS but added for safety */
+    padding: 0;
+}
+
+.serviceDeliverables li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}
+
+.serviceDeliverables li::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    margin-top: 0.5em; /* approximate vertical center to text line */
+    flex-shrink: 0;
+}
+
+.serviceCtaLink {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 500;
+    transition: opacity var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.serviceCtaLink:hover {
+    opacity: 0.8;
+}
+
+/* --- Section 3: Engagement Model --- */
+.engagementSection {
+    padding-block: clamp(var(--space-12), 8vw, var(--space-20));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-divider);
+}
+
+.engagementSection h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    max-width: 20ch;
+}
+
+.engagementSteps {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+    position: relative;
+}
+
+@media (min-width: 481px) {
+    .engagementSteps {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 769px) {
+    .engagementSteps {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .engagementSteps::before {
+        content: '';
+        position: absolute;
+        top: 24px;
+        left: 10%;
+        right: 10%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--color-border) 20%, var(--color-border) 80%, transparent);
+        z-index: 0;
+    }
+}
+
+.engagementStep {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.stepCircle {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-surface);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: var(--text-base);
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.stepTitle {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    margin-top: var(--space-4);
+}
+
+.stepDesc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-2);
+}

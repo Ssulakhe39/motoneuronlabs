@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MotoNeuron Labs - Intelligence Engineered</title>
+    <meta name="description" content="Intelligence, Engineered for Your Business. Tailored AI implementations and consulting for enterprise clients.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Type scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+            --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+            --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+            --text-hero: clamp(3rem, 0.5rem + 7vw, 6rem);
+
+            /* Spacing scale */
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+            --space-6: 1.5rem; --space-8: 2rem; --space-12: 3rem;
+            --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+            /* Radius */
+            --radius-sm: 0.375rem; --radius-md: 0.5rem;
+            --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+
+            /* Surfaces — dark-first */
+            --color-bg: #080a10;
+            --color-surface: #0e1118;
+            --color-surface-2: #151b26;
+            --color-surface-offset: #1e2535;
+            --color-border: rgba(255,255,255,0.08);
+            --color-divider: rgba(255,255,255,0.08);
+
+            /* Text */
+            --color-text: #e8eaf0;
+            --color-text-muted: #8b90a0;
+            --color-text-faint: #606878;
+
+            /* Accent */
+            --color-primary: #00d4c8;
+            --color-primary-hover: #00b5ab;
+            --color-primary-foreground: #000000;
+            --color-primary-glow: rgba(0, 212, 200, 0.15);
+
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Layout */
+            --nav-height: 72px;
+            --container-width: 1200px;
+        }
+
+        [data-theme="light"] {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-surface-2: #f1f5f9;
+            --color-surface-offset: #e2e8f0;
+            --color-border: rgba(0,0,0,0.08);
+            --color-divider: rgba(0,0,0,0.08);
+            
+            --color-text: #0f172a;
+            --color-text-muted: #475569;
+            --color-text-faint: #94a3b8;
+            
+            --color-primary: #009e96;
+            --color-primary-hover: #007d76;
+            --color-primary-foreground: #ffffff;
+            --color-primary-glow: rgba(0, 158, 150, 0.15);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --color-bg: #f8fafc;
+                --color-surface: #ffffff;
+                --color-surface-2: #f1f5f9;
+                --color-surface-offset: #e2e8f0;
+                --color-border: rgba(0,0,0,0.08);
+                --color-divider: rgba(0,0,0,0.08);
+                
+                --color-text: #0f172a;
+                --color-text-muted: #475569;
+                --color-text-faint: #94a3b8;
+                
+                --color-primary: #009e96;
+                --color-primary-hover: #007d76;
+                --color-primary-foreground: #ffffff;
+                --color-primary-glow: rgba(0, 158, 150, 0.15);
+            }
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color var(--transition-smooth), color var(--transition-smooth);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--color-text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* --- Layout Utilities --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 0 var(--space-8); }
+        }
+
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-4 { gap: var(--space-4); }
+        .gap-6 { gap: var(--space-6); }
+        .hidden { display: none; }
+
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: 0 var(--space-6);
+            height: 44px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+            border: 1px solid transparent;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            box-shadow: 0 0 16px var(--color-primary-glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-surface-2);
+            border-color: var(--color-text-muted);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            position: relative;
+            min-height: 100dvh;
+            display: flex;
+            align-items: center;
+            padding-bottom: var(--space-16);
+            overflow: hidden;
+        }
+
+        .hero-glow {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 600px 400px at 75% 50%, rgba(0, 212, 200, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-grid {
+                grid-template-columns: 55% 45%;
+                gap: var(--space-8);
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin: 0;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .text-accent {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            max-width: 48ch;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .hero-ctas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        /* Stats */
+        .hero-stats {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-stats {
+                flex-direction: row;
+                align-items: center;
+                gap: var(--space-8);
+            }
+            .stat-divider {
+                width: 1px;
+                height: 48px;
+                background-color: var(--color-border);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .stat-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .stat-label {
+            font-family: 'Inter', sans-serif;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Visual */
+        .hero-visual {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            min-height: 240px;
+            max-width: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-visual {
+                min-height: 320px;
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--space-8);
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--color-text-faint);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Animations */
+        @keyframes bounceChevron {
+            0%, 100% { transform: translate(-50%, 0); }
+            50% { transform: translate(-50%, 6px); }
+        }
+
+        @keyframes pulseNode {
+            0%, 100% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.4); opacity: 0.8; }
+        }
+
+        .node-pulse {
+            transform-origin: center;
+            transform-box: fill-box;
+        }
+
+        @media (prefers-reduced-motion: no-preference) {
+            .scroll-indicator {
+                animation: bounceChevron 1.5s ease-in-out infinite;
+            }
+            .node-pulse-1 { animation: pulseNode 3s ease-in-out infinite; }
+            .node-pulse-2 { animation: pulseNode 3s ease-in-out infinite 0.5s; }
+            .node-pulse-3 { animation: pulseNode 3s ease-in-out infinite 1s; }
+            .node-pulse-4 { animation: pulseNode 3s ease-in-out infinite 1.5s; }
+        }
+
+        /* --- AI Partners Section --- */
+        .partners-section {
+            padding-block: var(--space-16);
+            border-top: 1px solid var(--color-divider);
+            border-bottom: 1px solid var(--color-divider);
+            text-align: center;
+        }
+
+        .partners-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-8);
+        }
+
+        .partners-grid {
+            display: flex;
+            gap: var(--space-8);
+            overflow-x: auto;
+            padding-bottom: var(--space-4);
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .partners-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .partners-grid {
+                justify-content: center;
+                flex-wrap: wrap;
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
+        }
+
+        .partner-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+            scroll-snap-align: center;
+            flex-shrink: 0;
+            text-decoration: none;
+            outline: none;
+        }
+
+        .partner-logo img {
+            width: 80px;
+            height: 80px;
+            filter: grayscale(100%) opacity(0.45);
+            transition: filter var(--transition-smooth), opacity var(--transition-smooth);
+        }
+
+        .partner-logo:hover img, .partner-logo:focus-visible img {
+            filter: grayscale(0%) opacity(1);
+        }
+
+        .partner-logo-text {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-lg);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: var(--color-text-faint);
+            opacity: 0.45;
+            transition: all var(--transition-smooth);
+        }
+
+        .partner-logo:hover .partner-logo-text, .partner-logo:focus-visible .partner-logo-text {
+            opacity: 1;
+            color: var(--color-text);
+            border-color: var(--color-text-muted);
+        }
+
+        .partner-name {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+            transition: color var(--transition-smooth);
+        }
+
+        .partner-logo:hover .partner-name, .partner-logo:focus-visible .partner-name {
+            color: var(--color-text);
+        }
+
+        /* --- Services Section --- */
+        .services-section {
+            padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+        }
+
+        .services-intro {
+            text-align: left;
+            margin-bottom: var(--space-12);
+        }
+
+        .services-intro .eyebrow {
+            font-size: var(--text-xs);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+        }
+
+        .services-intro h2 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+        }
+
+        .services-intro p {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            max-width: 52ch;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: var(--space-4);
+        }
+
+        .bento-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6);
+            transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.4);
+        }
+
+        .bento-card h3 {
+            margin-bottom: var(--space-3);
+        }
+
+        .bento-card p {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            margin-bottom: var(--space-6);
+        }
+
+        /* Card A */
+        .bento-card-a {
+            grid-column: 1 / 5;
+            grid-row: 1 / 3;
+            padding: var(--space-8);
+            background-color: color-mix(in oklch, var(--color-primary) 4%, var(--color-surface));
+            border-color: color-mix(in oklch, var(--color-primary) 20%, transparent);
+        }
+
+        .bento-card-a h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .bento-card-a p {
+            font-size: var(--text-base);
+            max-width: 52ch;
+        }
+
+        .bento-card-a .service-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-8);
+        }
+
+        .bento-card-a .service-tag {
+            font-size: var(--text-xs);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            padding: 3px 12px;
+            background-color: var(--color-surface-2);
+            color: var(--color-text-muted);
+        }
+
+        .bento-card-a .card-link {
+            font-size: var(--text-sm);
+            color: var(--color-primary);
+            font-weight: 500;
+            margin-top: auto;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .bento-card-a .card-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Card B */
+        .bento-card-b {
+            grid-column: 5 / 7;
+            grid-row: 1 / 2;
+        }
+
+        .bento-card-b h3 { font-size: var(--text-lg); }
+
+        .bento-card-b .stat-block {
+            margin-top: auto;
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-divider);
+        }
+
+        .bento-card-b .stat-big {
+            font-size: var(--text-2xl);
+            color: var(--color-primary);
+            font-weight: 700;
+            display: block;
+            margin-bottom: var(--space-1);
+        }
+        
+        .bento-card-b .stat-label-text {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* Card C */
+        .bento-card-c {
+            grid-column: 5 / 7;
+            grid-row: 2 / 3;
+            background-color: var(--color-surface-2);
+        }
+
+        .bento-card-c h3 { font-size: var(--text-lg); }
+
+        /* Card D */
+        .bento-card-d {
+            grid-column: 1 / 4;
+            grid-row: 3 / 4;
+        }
+
+        .bento-card-d h3 { font-size: var(--text-lg); }
+        .bento-card-d p { margin-bottom: 0; }
+
+        /* Card E */
+        .bento-card-e {
+            grid-column: 4 / 7;
+            grid-row: 3 / 4;
+            background-color: var(--color-surface-2);
+        }
+
+        .bento-card-e h3 { font-size: var(--text-lg); }
+        .bento-card-e p { margin-bottom: 0; }
+
+        @media (max-width: 1024px) {
+            .bento-card-a { grid-column: 1 / 7; grid-row: auto; }
+            .bento-card-b, .bento-card-c { grid-column: span 3; grid-row: auto; }
+            .bento-card-d, .bento-card-e { grid-column: span 3; grid-row: auto; }
+        }
+
+        @media (max-width: 768px) {
+            .bento-card-a, .bento-card-b, .bento-card-c, .bento-card-d, .bento-card-e {
+                grid-column: 1 / 7;
+                grid-row: auto;
+            }
+        }
+
+        /* --- Social Proof Section --- */
+        .proof-section {
+            padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+            background: color-mix(in oklch, var(--color-primary) 3%, var(--color-bg));
+            border-top: 1px solid var(--color-divider);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            gap: var(--space-8);
+        }
+
+        @media (max-width: 768px) {
+            .proof-grid { grid-template-columns: 1fr; }
+        }
+
+        .proof-stats-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+
+        .proof-stat { display: flex; flex-direction: column; gap: var(--space-1); }
+
+        .proof-number {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+
+        .proof-label {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            max-width: 28ch;
+        }
+
+        .proof-quote {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            height: 100%;
+        }
+
+        .quote-mark {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 4rem;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-bottom: calc(var(--space-4) * -1);
+        }
+
+        .quote-text {
+            font-size: var(--text-base);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .quote-attribution { margin-top: auto; }
+        .quote-name { font-size: var(--text-sm); color: var(--color-text); font-weight: 600; }
+        .quote-title { font-size: var(--text-xs); color: var(--color-text-muted); }
+
+        /* --- CTA Banner --- */
+        .cta-banner {
+            padding-block: clamp(var(--space-16), 10vw, var(--space-24));
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-divider);
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-banner p {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            max-width: 44ch;
+            margin: 0 auto var(--space-8);
+        }
+
+        .cta-actions {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-4);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-divider);
+        }
+
+        .footer-upper {
+            padding-block: var(--space-16);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-8);
+        }
+
+        @media (max-width: 768px) {
+            .footer-upper { grid-template-columns: 2fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-upper { grid-template-columns: 1fr; }
+        }
+
+        .footer-brand .tagline {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            max-width: 28ch;
+            margin-top: var(--space-3);
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-faint);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icon:hover {
+            color: var(--color-text);
+            border-color: var(--color-text-muted);
+            background: var(--color-surface-2);
+        }
+
+        .footer-heading {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-faint);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-col-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-link {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: var(--color-text);
+        }
+
+        .footer-lower {
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .footer-copyright {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .footer-legal .footer-link {
+            font-size: var(--text-xs);
+        }
+
+        /* --- Navigation --- */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            letter-spacing: -0.01em;
+            color: var(--color-text);
+        }
+
+        .brand-logo:hover {
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link[aria-current="page"] {
+            color: var(--color-text);
+        }
+
+        .nav-link[aria-current="page"]::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--color-surface-2);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+        }
+
+        [data-theme="dark"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: none; }
+
+        /* Mobile Drawer */
+        .mobile-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .mobile-menu-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 320px;
+            background-color: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-6);
+        }
+
+        .mobile-menu-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .drawer-header .brand-logo {
+            font-size: var(--text-base);
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            flex: 1;
+        }
+
+        .drawer-links .nav-link {
+            font-size: var(--text-lg);
+            width: fit-content;
+        }
+
+        .drawer-footer {
+            margin-top: auto;
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-close {
+            color: var(--color-text);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            margin-right: -12px;
+        }
+        
+        /* Offset for main content underneath fixed header */
+        main {
+            margin-top: var(--nav-height);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SITE NAVIGATION -->
+    <nav class="site-nav">
+        <div class="container flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron Labs
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex nav-links">
+                <a href="home.html" class="nav-link" aria-current="page">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="solutions.html" class="nav-link">Solutions</a>
+                <a href="ai-partners.html" class="nav-link">AI Partners</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="icon-sun" width="20" height="20"></i>
+                    <i data-lucide="moon" class="icon-moon" width="20" height="20"></i>
+                </button>
+                <a href="contact.html" class="btn btn-primary hidden md:inline-flex">Get Started</a>
+                
+                <button class="mobile-menu-btn md:hidden" aria-label="Open mobile menu">
+                    <i data-lucide="menu" width="24" height="24"></i>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="drawer-header">
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron
+            </a>
+            <button class="drawer-close" id="closeMenuBtn" aria-label="Close menu">
+                <i data-lucide="x" width="24" height="24"></i>
+            </button>
+        </div>
+        
+        <div class="drawer-links">
+            <a href="home.html" class="nav-link" aria-current="page">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="solutions.html" class="nav-link">Solutions</a>
+            <a href="ai-partners.html" class="nav-link">AI Partners</a>
+            <a href="case-studies.html" class="nav-link">Case Studies</a>
+        </div>
+        
+        <div class="drawer-footer">
+            <a href="contact.html" class="btn btn-primary" style="width: 100%;">
+                Get Started
+                <i data-lucide="arrow-right" width="16" height="16"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENT STARTS HERE -->
+    <main>
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-glow"></div>
+            
+            <div class="container hero-grid">
+                
+                <!-- Left Column: Content -->
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span>Where Enterprise</span>
+                        <span>Decisions <span class="text-accent">Meet</span></span>
+                        <span>Machine Precision.</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        MotoNeuron Labs integrates Claude, GPT, Gemini, and other leading models into your workflows — tuned to your industry, your data, your rules.
+                    </p>
+                    
+                    <div class="hero-ctas">
+                        <a href="contact.html" class="btn btn-primary">
+                            Start a Project
+                            <i data-lucide="arrow-right" width="16" height="16"></i>
+                        </a>
+                        <a href="services.html" class="btn btn-secondary">
+                            See How It Works
+                        </a>
+                    </div>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Enterprise Clients</span>
+                        </div>
+                        <div class="hidden md:flex stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">3.2B</span>
+                            <span class="stat-label">Tokens Processed Monthly</span>
+                        </div>
+                        <div class="hidden md:flex stat-divider"></div>
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Foundation Models Supported</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual -->
+                <div class="hero-visual" aria-hidden="true">
+                    
+                    <svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;">
+                        <!-- Connection Lines -->
+                        <g stroke="var(--color-primary)" stroke-opacity="0.15" stroke-width="1">
+                            <line x1="80" y1="120" x2="200" y2="80"/>
+                            <line x1="80" y1="120" x2="160" y2="240"/>
+                            <line x1="200" y1="80" x2="320" y2="160"/>
+                            <line x1="200" y1="80" x2="260" y2="280"/>
+                            <line x1="160" y1="240" x2="260" y2="280"/>
+                            <line x1="160" y1="240" x2="100" y2="340"/>
+                            <line x1="320" y1="160" x2="360" y2="280"/>
+                            <line x1="260" y1="280" x2="360" y2="280"/>
+                            <line x1="260" y1="280" x2="220" y2="360"/>
+                            <line x1="100" y1="340" x2="220" y2="360"/>
+                        </g>
+
+                        <!-- Nodes -->
+                        <g stroke="var(--color-primary)" stroke-width="1" fill="var(--color-primary)">
+                            <circle cx="80" cy="120" r="4" fill-opacity="0.3"/>
+                            <!-- Pulsing Nodes -->
+                            <circle cx="200" cy="80" r="4" class="node-pulse node-pulse-1"/>
+                            <circle cx="160" cy="240" r="4" class="node-pulse node-pulse-2"/>
+                            
+                            <circle cx="320" cy="160" r="4" fill-opacity="0.3"/>
+                            <circle cx="260" cy="280" r="4" class="node-pulse node-pulse-3"/>
+                            
+                            <circle cx="100" cy="340" r="4" class="node-pulse node-pulse-4"/>
+                            <circle cx="360" cy="280" r="4" fill-opacity="0.3"/>
+                            <circle cx="220" cy="360" r="4" fill-opacity="0.3"/>
+                        </g>
+                    </svg>
+
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <i data-lucide="chevron-down" width="24" height="24"></i>
+            </div>
+            
+        </section>
+
+        <!-- AI Partners Section -->
+        <section class="partners-section" role="region" aria-label="Our AI Platform Partners">
+            <div class="container">
+                <h2 class="partners-label">POWERED BY THE WORLD'S LEADING AI FOUNDATIONS</h2>
+                
+                <div class="partners-grid" id="partnersGrid">
+                    <!-- OpenAI -->
+                    <a href="https://openai.com" target="_blank" rel="noopener noreferrer" class="partner-logo js-partner-hover" data-base-color="606878" data-hover-color="e8eaf0">
+                        <img src="https://cdn.simpleicons.org/openai/606878" width="80" height="80" alt="OpenAI logo" loading="lazy">
+                        <span class="partner-name">OpenAI</span>
+                    </a>
+
+                    <!-- Anthropic -->
+                    <a href="https://anthropic.com" target="_blank" rel="noopener noreferrer" class="partner-logo js-partner-hover" data-base-color="606878" data-hover-color="d97706">
+                        <img src="https://cdn.simpleicons.org/anthropic/606878" width="80" height="80" alt="Anthropic logo" loading="lazy">
+                        <span class="partner-name">Anthropic</span>
+                    </a>
+
+                    <!-- Google -->
+                    <a href="https://deepmind.google" target="_blank" rel="noopener noreferrer" class="partner-logo js-partner-hover" data-base-color="606878" data-hover-color="4285f4">
+                        <img src="https://cdn.simpleicons.org/google/606878" width="80" height="80" alt="Google logo" loading="lazy">
+                        <span class="partner-name">Google</span>
+                    </a>
+
+                    <!-- Meta -->
+                    <a href="https://ai.meta.com" target="_blank" rel="noopener noreferrer" class="partner-logo js-partner-hover" data-base-color="606878" data-hover-color="0082fb">
+                        <img src="https://cdn.simpleicons.org/meta/606878" width="80" height="80" alt="Meta logo" loading="lazy">
+                        <span class="partner-name">Meta</span>
+                    </a>
+
+                    <!-- Mistral -->
+                    <a href="https://mistral.ai" target="_blank" rel="noopener noreferrer" class="partner-logo js-partner-hover" data-base-color="606878" data-hover-color="f7931e">
+                        <img src="https://cdn.simpleicons.org/mistral/606878" width="80" height="80" alt="Mistral logo" loading="lazy">
+                        <span class="partner-name">Mistral</span>
+                    </a>
+
+                    <!-- Cohere Default -->
+                    <a href="https://cohere.com" target="_blank" rel="noopener noreferrer" class="partner-logo">
+                        <div class="partner-logo-text">Co</div>
+                        <span class="partner-name">Cohere</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services-section" aria-labelledby="services-heading">
+            <div class="container">
+                <div class="services-intro">
+                    <p class="eyebrow">WHAT WE DO</p>
+                    <h2 id="services-heading">AI Services Built for Enterprise Complexity</h2>
+                    <p>From model selection to production deployment — every engagement is scoped to your stack, your team, and your timeline.</p>
+                </div>
+                
+                <div class="bento-grid">
+                    <!-- Card A -->
+                    <div class="bento-card bento-card-a">
+                        <i data-lucide="layers" width="28" height="28" style="color: var(--color-primary); margin-bottom: var(--space-6);"></i>
+                        <h3>Foundation Model Integration</h3>
+                        <p>Connect GPT-4o, Claude 3.5 Sonnet, and Gemini 1.5 Pro to your internal systems through secure, versioned API layers and custom middleware. Our unified model routing layer automatically selects the optimal model per request — balancing cost, latency, and capability thresholds. Built-in fallback logic ensures zero-downtime continuity when any upstream provider experiences degradation.</p>
+                        <div class="service-tags">
+                            <span class="service-tag">Multi-model routing</span>
+                            <span class="service-tag">API gateway</span>
+                            <span class="service-tag">Cost optimization</span>
+                            <span class="service-tag">Fallback logic</span>
+                        </div>
+                        <a href="services.html" class="card-link">Explore service &rarr;</a>
+                    </div>
+                    
+                    <!-- Card B -->
+                    <div class="bento-card bento-card-b">
+                        <i data-lucide="sliders" width="20" height="20" style="color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+                        <h3>Enterprise Fine-tuning</h3>
+                        <p>Adapt foundational models to your domain vocabulary, proprietary data formats, and compliance requirements.</p>
+                        <div class="stat-block">
+                            <span class="stat-big">4&times;</span>
+                            <span class="stat-label-text">faster domain adaptation vs. prompt engineering alone</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Card C -->
+                    <div class="bento-card bento-card-c">
+                        <i data-lucide="compass" width="20" height="20" style="color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+                        <h3>AI Strategy Consulting</h3>
+                        <p>Map your AI readiness, prioritize high-ROI use cases, and build a roadmap your board can actually approve.</p>
+                        <a href="contact.html" class="btn btn-secondary" style="font-size: var(--text-xs); height: 36px; padding: 0 var(--space-4); width: fit-content; margin-top: auto;">Book a Call</a>
+                    </div>
+                    
+                    <!-- Card D -->
+                    <div class="bento-card bento-card-d">
+                        <i data-lucide="database" width="20" height="20" style="color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+                        <h3>Data Pipeline Engineering</h3>
+                        <p>Design and deploy production-grade ingestion pipelines, vector stores, and RAG architectures that keep your AI grounded in live enterprise data.</p>
+                    </div>
+                    
+                    <!-- Card E -->
+                    <div class="bento-card bento-card-e">
+                        <i data-lucide="rocket" width="20" height="20" style="color: var(--color-primary); margin-bottom: var(--space-3);"></i>
+                        <h3>Deployment &amp; MLOps</h3>
+                        <p>Containerized deployments on Kubernetes with automated model versioning, drift monitoring, and rollback — from staging to production in days, not months.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <section class="proof-section" aria-labelledby="proof-heading">
+            <div class="container proof-grid">
+                <div class="proof-stats-col">
+                    <div class="proof-stat">
+                        <span class="proof-number" data-target="98" data-suffix="%">0%</span>
+                        <span class="proof-label">Client satisfaction across all engagements</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="proof-number" data-target="43" data-suffix="%">0%</span>
+                        <span class="proof-label">Average reduction in manual processing time</span>
+                    </div>
+                    <div class="proof-stat">
+                        <span class="proof-number">8 wks</span>
+                        <span class="proof-label">Median time from kickoff to first production deployment</span>
+                    </div>
+                </div>
+                
+                <div class="proof-quote">
+                    <div class="quote-mark">"</div>
+                    <p class="quote-text">MotoNeuron Labs didn't just integrate an AI layer — they rebuilt how our underwriting team makes decisions. We went from 3-day turnarounds to 4-hour cycles within the first month.</p>
+                    <div class="quote-attribution">
+                        <div class="quote-name">Sarah Chen</div>
+                        <div class="quote-title">VP of Operations, Meridian Financial Group</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Banner -->
+        <section class="cta-banner" aria-label="Start a project with MotoNeuron Labs">
+            <div class="container">
+                <h2>Ready to Build AI That Actually Works?</h2>
+                <p>Talk to our team. We'll scope your first AI use case in 48 hours.</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary" style="font-size: var(--text-base); height: 52px; padding: 0 var(--space-8);">
+                        Schedule a Discovery Call 
+                        <i data-lucide="arrow-right" width="18" height="18"></i>
+                    </a>
+                    <a href="case-studies.html" class="btn btn-secondary" style="height: 52px; padding: 0 var(--space-8);">
+                        Read Case Studies
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-upper">
+                <div class="footer-brand">
+                    <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                        </svg>
+                        MotoNeuron Labs
+                    </a>
+                    <p class="tagline">Intelligence, Engineered for Your Business.</p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+                            <i data-lucide="twitter" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                            <i data-lucide="github" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Services</h3>
+                    <div class="footer-col-links">
+                        <a href="services.html" class="footer-link">Model Integration</a>
+                        <a href="services.html" class="footer-link">Fine-tuning</a>
+                        <a href="services.html" class="footer-link">AI Strategy</a>
+                        <a href="services.html" class="footer-link">Data Pipelines</a>
+                        <a href="services.html" class="footer-link">MLOps</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Company</h3>
+                    <div class="footer-col-links">
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="case-studies.html" class="footer-link">Case Studies</a>
+                        <a href="ai-partners.html" class="footer-link">AI Partners</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Careers</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
+                        Ready to explore what AI can do for your business?
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: var(--space-4);">
+                        Start a Project
+                    </a>
+                    <a href="mailto:hello@motoneuronlabs.ai" class="footer-link">hello@motoneuronlabs.ai</a>
+                </div>
+            </div>
+            
+            <div class="footer-lower">
+                <span class="footer-copyright">&copy; 2026 MotoNeuron Labs. All rights reserved.</span>
+                <div class="footer-legal">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Partner Logo Hover Logic
+        const partnerLogos = document.querySelectorAll('.js-partner-hover');
+        partnerLogos.forEach(link => {
+            const img = link.querySelector('img');
+            const baseColor = link.getAttribute('data-base-color');
+            const hoverColor = link.getAttribute('data-hover-color');
+            
+            if(img && baseColor && hoverColor) {
+                const originalSrc = img.src;
+                const hoverSrc = originalSrc.replace(`/${baseColor}`, `/${hoverColor}`);
+                
+                const showHover = () => { img.src = hoverSrc; };
+                const hideHover = () => { img.src = originalSrc; };
+                
+                link.addEventListener('mouseenter', showHover);
+                link.addEventListener('mouseleave', hideHover);
+                link.addEventListener('focus', showHover);
+                link.addEventListener('blur', hideHover);
+            }
+        });
+
+        // GSAP Scroll Animations
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            const partners = gsap.utils.toArray('.partner-logo');
+            if (partners.length > 0) {
+                gsap.fromTo(partners, 
+                    { opacity: 0, y: 16 }, 
+                    {
+                        opacity: 1, 
+                        y: 0, 
+                        stagger: 0.08, 
+                        duration: 0.6, 
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: ".partners-section",
+                            start: "top 85%",
+                        }
+                    }
+                );
+            }
+
+            const bentoCards = gsap.utils.toArray('.bento-card');
+            if (bentoCards.length > 0) {
+                gsap.fromTo(bentoCards,
+                    { opacity: 0, y: 24 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        stagger: 0.1, 
+                        duration: 0.7, 
+                        ease: "power2.out",
+                        scrollTrigger: { 
+                            trigger: ".services-section", 
+                            start: "top 75%" 
+                        }
+                    }
+                );
+            }
+
+            // Proof Section Animations
+            gsap.fromTo('.proof-stat', 
+                { opacity: 0, x: -20 },
+                { opacity: 1, x: 0, stagger: 0.15, duration: 0.7, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.proof-section', start: 'top 75%' } }
+            );
+
+            gsap.fromTo('.proof-quote',
+                { opacity: 0, x: 20 },
+                { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.proof-section', start: 'top 75%' } }
+            );
+
+            // CTA Banner Animations
+            gsap.fromTo('.cta-banner h2, .cta-banner p, .cta-banner .cta-actions',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.cta-banner', start: 'top 80%' } }
+            );
+        }
+
+        // Count-up Animation
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            const numElems = document.querySelectorAll('.proof-number[data-target]');
+            if (numElems.length > 0) {
+                const countObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const target = parseInt(el.getAttribute('data-target'), 10);
+                            const suffix = el.getAttribute('data-suffix') || '';
+                            if (!isNaN(target)) {
+                                let startTime = null;
+                                const duration = 1800; // 1800ms
+                                
+                                const step = (timestamp) => {
+                                    if (!startTime) startTime = timestamp;
+                                    const progress = Math.min((timestamp - startTime) / duration, 1);
+                                    // Ease-out cubic
+                                    const easeOutProgress = 1 - Math.pow(1 - progress, 3);
+                                    const current = Math.floor(easeOutProgress * target);
+                                    el.textContent = current + suffix;
+                                    if (progress < 1) {
+                                        window.requestAnimationFrame(step);
+                                    } else {
+                                        el.textContent = target + suffix;
+                                    }
+                                };
+                                window.requestAnimationFrame(step);
+                            }
+                            observer.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                numElems.forEach(el => countObserver.observe(el));
+            }
+        } else {
+            // Reduced motion fallback
+            document.querySelectorAll('.proof-number[data-target]').forEach(el => {
+                const target = el.getAttribute('data-target');
+                const suffix = el.getAttribute('data-suffix') || '';
+                if(target) el.textContent = target + suffix;
+            });
+        }
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+        function toggleMenu() {
+            const isOpen = mobileMenuDrawer.classList.contains('open');
+            if (isOpen) {
+                mobileMenuDrawer.classList.remove('open');
+                mobileMenuBackdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenuDrawer.classList.add('open');
+                mobileMenuBackdrop.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileMenuBackdrop.addEventListener('click', toggleMenu);
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Sync with OS preference on load if no explicit theme set
+        if (!html.hasAttribute('data-theme')) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        });
+    </script>
+</body>
+</html>

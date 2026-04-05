@@ -1,0 +1,1295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies — MotoNeuron Labs</title>
+    <meta name="description" content="Real AI outcomes from MotoNeuron Labs — measurable results across healthcare, finance, manufacturing, and more.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Type scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+            --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+            --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+            --text-hero: clamp(3rem, 0.5rem + 7vw, 6rem);
+
+            /* Spacing scale */
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+            --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; 
+            --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+            /* Radius */
+            --radius-sm: 0.375rem; --radius-md: 0.5rem;
+            --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+
+            /* Surfaces — dark-first */
+            --color-bg: #080a10;
+            --color-surface: #0e1118;
+            --color-surface-2: #151b26;
+            --color-surface-offset: #1e2535;
+            --color-border: rgba(255,255,255,0.08);
+            --color-divider: rgba(255,255,255,0.08);
+
+            /* Text */
+            --color-text: #e8eaf0;
+            --color-text-muted: #8b90a0;
+            --color-text-faint: #606878;
+
+            /* Accent */
+            --color-primary: #00d4c8;
+            --color-primary-hover: #00b5ab;
+            --color-primary-foreground: #000000;
+            --color-primary-glow: rgba(0, 212, 200, 0.15);
+
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Layout */
+            --nav-height: 72px;
+            --container-width: 1200px;
+        }
+
+        [data-theme="light"] {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-surface-2: #f1f5f9;
+            --color-surface-offset: #e2e8f0;
+            --color-border: rgba(0,0,0,0.08);
+            --color-divider: rgba(0,0,0,0.08);
+            
+            --color-text: #0f172a;
+            --color-text-muted: #475569;
+            --color-text-faint: #94a3b8;
+            
+            --color-primary: #009e96;
+            --color-primary-hover: #007d76;
+            --color-primary-foreground: #ffffff;
+            --color-primary-glow: rgba(0, 158, 150, 0.15);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --color-bg: #f8fafc;
+                --color-surface: #ffffff;
+                --color-surface-2: #f1f5f9;
+                --color-surface-offset: #e2e8f0;
+                --color-border: rgba(0,0,0,0.08);
+                --color-divider: rgba(0,0,0,0.08);
+                
+                --color-text: #0f172a;
+                --color-text-muted: #475569;
+                --color-text-faint: #94a3b8;
+                
+                --color-primary: #009e96;
+                --color-primary-hover: #007d76;
+                --color-primary-foreground: #ffffff;
+                --color-primary-glow: rgba(0, 158, 150, 0.15);
+            }
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color var(--transition-smooth), color var(--transition-smooth);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--color-text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* --- Layout Utilities --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 0 var(--space-8); }
+        }
+
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-4 { gap: var(--space-4); }
+        .gap-6 { gap: var(--space-6); }
+        .hidden { display: none; }
+
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: 0 var(--space-6);
+            height: 44px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+            border: 1px solid transparent;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            box-shadow: 0 0 16px var(--color-primary-glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-surface-2);
+            border-color: var(--color-text-muted);
+        }
+
+        /* --- CTA Banner --- */
+        .cta-banner {
+            padding-block: clamp(var(--space-16), 10vw, var(--space-24));
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-divider);
+            text-align: center;
+        }
+
+        .cta-banner h2 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-banner p {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            max-width: 44ch;
+            margin: 0 auto var(--space-8);
+        }
+
+        .cta-actions {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-4);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-divider);
+        }
+
+        .footer-upper {
+            padding-block: var(--space-16);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-8);
+        }
+
+        @media (max-width: 768px) {
+            .footer-upper { grid-template-columns: 2fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-upper { grid-template-columns: 1fr; }
+        }
+
+        .footer-brand .tagline {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            max-width: 28ch;
+            margin-top: var(--space-3);
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-faint);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icon:hover {
+            color: var(--color-text);
+            border-color: var(--color-text-muted);
+            background: var(--color-surface-2);
+        }
+
+        .footer-heading {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-faint);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-col-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-link {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: var(--color-text);
+        }
+
+        .footer-lower {
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .footer-copyright {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .footer-legal .footer-link {
+            font-size: var(--text-xs);
+        }
+
+        /* --- Navigation --- */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            letter-spacing: -0.01em;
+            color: var(--color-text);
+        }
+
+        .brand-logo:hover {
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link[aria-current="page"] {
+            color: var(--color-text);
+        }
+
+        .nav-link[aria-current="page"]::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--color-surface-2);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+        }
+
+        [data-theme="dark"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: none; }
+
+        /* Mobile Drawer */
+        .mobile-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .mobile-menu-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 320px;
+            background-color: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-6);
+        }
+
+        .mobile-menu-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .drawer-header .brand-logo {
+            font-size: var(--text-base);
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            flex: 1;
+        }
+
+        .drawer-links .nav-link {
+            font-size: var(--text-lg);
+            width: fit-content;
+        }
+
+        .drawer-footer {
+            margin-top: auto;
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-close {
+            color: var(--color-text);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            margin-right: -12px;
+        }
+        
+        /* Offset for main content underneath fixed header */
+        main {
+            margin-top: var(--nav-height);
+        }
+
+        /* ==========================================================================
+           PAGE SPECIFIC STYLES
+           ========================================================================== */
+
+        /* --- Section 1: Page Hero --- */
+        .page-hero {
+            padding-top: calc(var(--nav-height) + var(--space-16));
+            padding-bottom: var(--space-16);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .page-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            align-items: center;
+        }
+
+        .page-hero .eyebrow {
+            font-size: var(--text-xs);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            display: block;
+        }
+
+        .page-hero h1 {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0;
+            max-width: 18ch;
+        }
+
+        .page-hero .sub {
+            font-size: var(--text-lg);
+            color: var(--color-text-muted);
+            max-width: 52ch;
+            margin-top: var(--space-4);
+            margin-bottom: 0;
+        }
+
+        /* Stat Pills */
+        .hero-stats-row {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+        }
+
+        .stat-pill {
+            background: color-mix(in oklch, var(--color-primary) 8%, var(--color-surface));
+            border: 1px solid color-mix(in oklch, var(--color-primary) 25%, transparent);
+            border-radius: var(--radius-full);
+            padding: var(--space-2) var(--space-6);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .stat-pill .pill-number {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            color: var(--color-primary);
+        }
+
+        .stat-pill .pill-label {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        /* --- Section 2: Case Studies --- */
+        .case-studies-section {
+            padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
+        .case-study-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: start;
+            padding-block: var(--space-16);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .case-study-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Reversed layout for desktop */
+        .case-study-item--reversed {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 768px) {
+            .case-study-item,
+            .case-study-item--reversed {
+                grid-template-columns: 1fr;
+                display: flex;
+                flex-direction: column;
+            }
+            .case-study-item--reversed .cs-metrics {
+                order: 2;
+            }
+            .case-study-item--reversed .cs-content {
+                order: 1;
+            }
+        }
+
+        /* Case Study Content */
+        .cs-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+        }
+
+        .cs-tag {
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+            background: var(--color-surface-2);
+            padding: 2px 12px;
+        }
+
+        .cs-tag-model {
+            border: 1px solid var(--color-primary);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            color: var(--color-primary);
+            background: color-mix(in oklch, var(--color-primary) 8%, var(--color-surface));
+            padding: 2px 12px;
+        }
+
+        .cs-content h3 {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: var(--space-4);
+            max-width: 20ch;
+        }
+
+        .cs-client {
+            font-size: var(--text-sm);
+            color: var(--color-text-faint);
+            margin-bottom: var(--space-6);
+        }
+
+        .cs-section-label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: var(--space-2);
+        }
+
+        .cs-text {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            max-width: 55ch;
+            line-height: 1.7;
+            margin-bottom: var(--space-6);
+        }
+
+        .cs-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+        }
+
+        .service-tag { /* Reusing the style definition for tech stack tags */
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-full);
+            padding: 2px 10px;
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            background: var(--color-surface-2);
+        }
+
+        /* Case Study Metrics */
+        .cs-metrics {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-8);
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .cs-metrics .eyebrow {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-primary);
+            font-weight: 600;
+            margin-bottom: 0;
+            display: block;
+        }
+
+        .cs-metric {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .cs-metric:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .metric-value {
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--color-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1;
+        }
+
+        .metric-value.long {
+            font-size: var(--text-xl);
+        }
+
+        .metric-label {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+        .metric-detail {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+        }
+
+        /* --- Section 3: Trust Signales Bar --- */
+        .trust-section {
+            padding-block: clamp(var(--space-8), 4vw, var(--space-12));
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-divider);
+            border-bottom: 1px solid var(--color-divider);
+            text-align: center;
+        }
+
+        .trust-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: var(--space-8) var(--space-12);
+        }
+
+        .trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .trust-item span {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SITE NAVIGATION -->
+    <nav class="site-nav">
+        <div class="container flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron Labs
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex nav-links">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="solutions.html" class="nav-link">Solutions</a>
+                <a href="ai-partners.html" class="nav-link">AI Partners</a>
+                <a href="case-studies.html" class="nav-link" aria-current="page">Case Studies</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="icon-sun" width="20" height="20"></i>
+                    <i data-lucide="moon" class="icon-moon" width="20" height="20"></i>
+                </button>
+                <a href="contact.html" class="btn btn-primary hidden md:inline-flex">Get Started</a>
+                
+                <button class="mobile-menu-btn md:hidden" aria-label="Open mobile menu">
+                    <i data-lucide="menu" width="24" height="24"></i>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="drawer-header">
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron
+            </a>
+            <button class="drawer-close" id="closeMenuBtn" aria-label="Close menu">
+                <i data-lucide="x" width="24" height="24"></i>
+            </button>
+        </div>
+        
+        <div class="drawer-links">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="solutions.html" class="nav-link">Solutions</a>
+            <a href="ai-partners.html" class="nav-link">AI Partners</a>
+            <a href="case-studies.html" class="nav-link" aria-current="page">Case Studies</a>
+        </div>
+        
+        <div class="drawer-footer">
+            <a href="contact.html" class="btn btn-primary" style="width: 100%;">
+                Get Started
+                <i data-lucide="arrow-right" width="16" height="16"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENT STARTS HERE -->
+    <main>
+        
+        <!-- SECTION 1: Page Hero -->
+        <section class="page-hero">
+            <div class="container page-hero-grid" style="grid-template-columns: 1fr; max-width: 860px;">
+                <div class="page-hero-content">
+                    <span class="eyebrow">CLIENT RESULTS</span>
+                    <h1>AI That Moves the Metric That Matters</h1>
+                    <p class="sub">Every engagement is measured against a specific business outcome. These are the results our clients have shared with us.</p>
+                    
+                    <div class="hero-stats-row">
+                        <div class="stat-pill">
+                            <span class="pill-number">50+</span>
+                            <span class="pill-label">Enterprise clients</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="pill-number">12</span>
+                            <span class="pill-label">Foundation models</span>
+                        </div>
+                        <div class="stat-pill">
+                            <span class="pill-number">3.2B</span>
+                            <span class="pill-label">Tokens/month</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Case Studies -->
+        <section class="case-studies-section" aria-labelledby="cs-heading">
+            <div class="container">
+                <h2 id="cs-heading" class="sr-only">Case Studies</h2>
+
+                <!-- Case Study 1 -->
+                <article class="case-study-item">
+                    <div class="cs-content">
+                        <div class="cs-meta">
+                            <span class="cs-tag">Financial Services</span>
+                            <span class="cs-tag-model">Claude 3.5 + GPT-4o</span>
+                        </div>
+                        <h3>Cutting Underwriting Cycle Time by 67%</h3>
+                        <p class="cs-client">Client: Mid-size specialty insurance carrier, North America</p>
+                        
+                        <p class="cs-section-label">The Challenge</p>
+                        <p class="cs-text">A specialty insurance carrier was processing commercial underwriting submissions manually — a team of 12 underwriters reviewing PDF submissions, cross-referencing policy databases, and composing coverage rationale. Average cycle time was 9 business days. The backlog was growing faster than headcount could.</p>
+                        
+                        <p class="cs-section-label">Solution</p>
+                        <p class="cs-text">MotoNeuron Labs built a dual-model pipeline: Claude 3.5 extracts and reasons over submission documents (up to 200-page PDFs), while GPT-4o generates structured coverage rationale using the carrier's proprietary policy templates. Human underwriters now review a pre-filled decision package rather than starting from scratch.</p>
+                        
+                        <p class="cs-section-label">Tech Stack</p>
+                        <div class="cs-stack">
+                            <span class="service-tag">Claude 3.5</span>
+                            <span class="service-tag">GPT-4o</span>
+                            <span class="service-tag">FastAPI</span>
+                            <span class="service-tag">PostgreSQL</span>
+                            <span class="service-tag">AWS Lambda</span>
+                        </div>
+                    </div>
+                    <div class="cs-metrics">
+                        <span class="eyebrow">RESULTS</span>
+                        <div class="cs-metric">
+                            <span class="metric-value">67%</span>
+                            <span class="metric-label">Reduction in underwriting cycle time</span>
+                            <span class="metric-detail">From 9 days to 3 days</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">4.2×</span>
+                            <span class="metric-label">Throughput increase</span>
+                            <span class="metric-detail">Same headcount, 4x submission volume</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">94%</span>
+                            <span class="metric-label">Accuracy on coverage classification</span>
+                            <span class="metric-detail">vs. 87% manual baseline</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">$2.1M</span>
+                            <span class="metric-label">Projected annual savings</span>
+                            <span class="metric-detail">Based on 12-month extrapolation</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 2 -->
+                <article class="case-study-item case-study-item--reversed">
+                    <div class="cs-metrics">
+                        <span class="eyebrow">RESULTS</span>
+                        <div class="cs-metric">
+                            <span class="metric-value">0</span>
+                            <span class="metric-label">Unplanned downtime incidents post-deployment</span>
+                            <span class="metric-detail">6-month period</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value long">72hrs</span>
+                            <span class="metric-label">Average failure prediction lead time</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">€1.4M</span>
+                            <span class="metric-label">Maintenance cost savings</span>
+                            <span class="metric-detail">First year</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">99.2%</span>
+                            <span class="metric-label">Model precision on failure classification</span>
+                        </div>
+                    </div>
+                    <div class="cs-content">
+                        <div class="cs-meta">
+                            <span class="cs-tag">Manufacturing</span>
+                            <span class="cs-tag-model">Llama 3 (on-premise)</span>
+                        </div>
+                        <h3>Zero Unplanned Downtime Across 3 Production Lines</h3>
+                        <p class="cs-client">Client: Tier-1 automotive component manufacturer, Germany</p>
+                        
+                        <p class="cs-section-label">The Challenge</p>
+                        <p class="cs-text">Unplanned equipment failures were costing this manufacturer an average of €380,000 per incident in lost production and emergency maintenance. Traditional time-based maintenance schedules were missing early failure signals buried in sensor telemetry.</p>
+                        
+                        <p class="cs-section-label">Solution</p>
+                        <p class="cs-text">We deployed Llama 3 entirely on-premise to satisfy the client's strict IP and data residency requirements. The model was fine-tuned on 18 months of vibration, temperature, and pressure telemetry to predict failure windows 72+ hours in advance. Maintenance teams receive prioritized work orders through an internal dashboard — no cloud dependency, no API latency.</p>
+                        
+                        <p class="cs-section-label">Tech Stack</p>
+                        <div class="cs-stack">
+                            <span class="service-tag">Llama 3</span>
+                            <span class="service-tag">LoRA fine-tuning</span>
+                            <span class="service-tag">Kubernetes</span>
+                            <span class="service-tag">OPC-UA</span>
+                            <span class="service-tag">InfluxDB</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 3 -->
+                <article class="case-study-item">
+                    <div class="cs-content">
+                        <div class="cs-meta">
+                            <span class="cs-tag">Healthcare</span>
+                            <span class="cs-tag-model">GPT-4o + Cohere Embed</span>
+                        </div>
+                        <h3>Clinical Documentation Time Reduced by 58%</h3>
+                        <p class="cs-client">Client: Regional hospital network, 14 facilities, United States</p>
+                        
+                        <p class="cs-section-label">The Challenge</p>
+                        <p class="cs-text">Physicians at this hospital network were spending an average of 2.4 hours per shift on clinical documentation — updating EHR entries, composing discharge summaries, and coding diagnoses. Burnout rates were rising and documentation quality was inconsistent across facilities.</p>
+                        
+                        <p class="cs-section-label">Solution</p>
+                        <p class="cs-text">We built a voice-to-EHR documentation layer using GPT-4o for transcription and reasoning, combined with Cohere's embedding models to match clinical notes against ICD-10 coding databases with semantic search rather than keyword matching. Physicians dictate naturally; the system generates structured, compliant EHR entries for review.</p>
+                        
+                        <p class="cs-section-label">Tech Stack</p>
+                        <div class="cs-stack">
+                            <span class="service-tag">GPT-4o</span>
+                            <span class="service-tag">Cohere Embed</span>
+                            <span class="service-tag">FHIR API</span>
+                            <span class="service-tag">Azure</span>
+                            <span class="service-tag">React</span>
+                        </div>
+                    </div>
+                    <div class="cs-metrics">
+                        <span class="eyebrow">RESULTS</span>
+                        <div class="cs-metric">
+                            <span class="metric-value">58%</span>
+                            <span class="metric-label">Reduction in documentation time per shift</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value long">2.4hrs &rarr; 1.0hr</span>
+                            <span class="metric-label">Average daily documentation burden</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">96%</span>
+                            <span class="metric-label">ICD-10 coding accuracy</span>
+                            <span class="metric-detail">vs. 82% pre-deployment</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">31%</span>
+                            <span class="metric-label">Reduction in documentation-related errors</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Case Study 4 -->
+                <article class="case-study-item case-study-item--reversed">
+                    <div class="cs-metrics">
+                        <span class="eyebrow">RESULTS</span>
+                        <div class="cs-metric">
+                            <span class="metric-value">23%</span>
+                            <span class="metric-label">Lift in recommendation CTR</span>
+                            <span class="metric-detail">vs. prior rule engine</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">18%</span>
+                            <span class="metric-label">Increase in average order value</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value long">41ms</span>
+                            <span class="metric-label">Median recommendation latency</span>
+                            <span class="metric-detail">p95: 67ms</span>
+                        </div>
+                        <div class="cs-metric">
+                            <span class="metric-value">2.8×</span>
+                            <span class="metric-label">ROI on first 6 months</span>
+                            <span class="metric-detail">vs. implementation cost</span>
+                        </div>
+                    </div>
+                    <div class="cs-content">
+                        <div class="cs-meta">
+                            <span class="cs-tag">Retail &amp; E-Commerce</span>
+                            <span class="cs-tag-model">Gemini 1.5 + Cohere Embed</span>
+                        </div>
+                        <h3>23% Lift in Conversion Through AI Personalization</h3>
+                        <p class="cs-client">Client: Multi-brand e-commerce retailer, 4.2M monthly active users</p>
+                        
+                        <p class="cs-section-label">The Challenge</p>
+                        <p class="cs-text">Existing product recommendation rules were static — built on collaborative filtering from 2019. With a catalog of 800,000+ SKUs and customers browsing across 6 brands, the rule engine could not keep pace with behavioral signals. CTR on recommendations had declined 18% over two years.</p>
+                        
+                        <p class="cs-section-label">Solution</p>
+                        <p class="cs-text">We replaced the rule engine with a real-time personalization layer: Gemini 1.5 processes multi-session browsing context (including image interactions), while Cohere Embed powers the semantic product retrieval layer. The system re-ranks recommendations on every page load using live session signals, without requiring a full model inference call each time.</p>
+                        
+                        <p class="cs-section-label">Tech Stack</p>
+                        <div class="cs-stack">
+                            <span class="service-tag">Gemini 1.5</span>
+                            <span class="service-tag">Cohere Embed</span>
+                            <span class="service-tag">Redis</span>
+                            <span class="service-tag">Kafka</span>
+                            <span class="service-tag">GCP</span>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- SECTION 3: Trust Signals Bar -->
+        <section class="trust-section" aria-label="Trust and compliance">
+            <div class="container">
+                <div class="trust-bar">
+                    <div class="trust-item">
+                        <i data-lucide="shield-check" width="16" height="16" style="color: var(--color-primary)"></i>
+                        <span>HIPAA &amp; SOC 2 compliant workflows</span>
+                    </div>
+                    <div class="trust-item">
+                        <i data-lucide="lock" width="16" height="16" style="color: var(--color-primary)"></i>
+                        <span>On-premise deployment available</span>
+                    </div>
+                    <div class="trust-item">
+                        <i data-lucide="globe" width="16" height="16" style="color: var(--color-primary)"></i>
+                        <span>Clients across North America, Europe &amp; APAC</span>
+                    </div>
+                    <div class="trust-item">
+                        <i data-lucide="users" width="16" height="16" style="color: var(--color-primary)"></i>
+                        <span>50+ enterprise deployments</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: CTA Banner (Copied from ai-partners.html) -->
+        <section class="cta-banner" aria-label="Start a project with MotoNeuron Labs">
+            <div class="container">
+                <h2>Ready to Build AI That Actually Works?</h2>
+                <p>Talk to our team. We'll scope your first AI use case in 48 hours.</p>
+                <div class="cta-actions">
+                    <a href="contact.html" class="btn btn-primary" style="font-size: var(--text-base); height: 52px; padding: 0 var(--space-8);">
+                        Schedule a Discovery Call 
+                        <i data-lucide="arrow-right" width="18" height="18"></i>
+                    </a>
+                    <a href="case-studies.html" class="btn btn-secondary" style="height: 52px; padding: 0 var(--space-8);">
+                        Read Case Studies
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-upper">
+                <div class="footer-brand">
+                    <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                        </svg>
+                        MotoNeuron Labs
+                    </a>
+                    <p class="tagline">Intelligence, Engineered for Your Business.</p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+                            <i data-lucide="twitter" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                            <i data-lucide="github" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Services</h3>
+                    <div class="footer-col-links">
+                        <a href="services.html" class="footer-link">Model Integration</a>
+                        <a href="services.html" class="footer-link">Fine-tuning</a>
+                        <a href="services.html" class="footer-link">AI Strategy</a>
+                        <a href="services.html" class="footer-link">Data Pipelines</a>
+                        <a href="services.html" class="footer-link">MLOps</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Company</h3>
+                    <div class="footer-col-links">
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="case-studies.html" class="footer-link">Case Studies</a>
+                        <a href="ai-partners.html" class="footer-link">AI Partners</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Careers</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
+                        Ready to explore what AI can do for your business?
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: var(--space-4);">
+                        Start a Project
+                    </a>
+                    <a href="mailto:hello@motoneuronlabs.ai" class="footer-link">hello@motoneuronlabs.ai</a>
+                </div>
+            </div>
+            
+            <div class="footer-lower">
+                <span class="footer-copyright">&copy; 2026 MotoNeuron Labs. All rights reserved.</span>
+                <div class="footer-legal">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // GSAP Scroll Animations
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Case Studies Stagger Animation
+            gsap.fromTo('.case-study-item',
+                { opacity: 0, y: 32 },
+                { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.case-studies-section', start: 'top 80%' } }
+            );
+
+            // CTA Banner Animations
+            gsap.fromTo('.cta-banner h2, .cta-banner p, .cta-banner .cta-actions',
+                { opacity: 0, y: 20 },
+                { opacity: 1, y: 0, stagger: 0.12, duration: 0.6, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.cta-banner', start: 'top 80%' } }
+            );
+        }
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+        function toggleMenu() {
+            const isOpen = mobileMenuDrawer.classList.contains('open');
+            if (isOpen) {
+                mobileMenuDrawer.classList.remove('open');
+                mobileMenuBackdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenuDrawer.classList.add('open');
+                mobileMenuBackdrop.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileMenuBackdrop.addEventListener('click', toggleMenu);
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Sync with OS preference on load if no explicit theme set
+        if (!html.hasAttribute('data-theme')) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        });
+    </script>
+</body>
+</html>

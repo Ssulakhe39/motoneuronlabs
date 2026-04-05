@@ -1,0 +1,233 @@
+/* ==========================================================================
+   SOLUTIONS PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+/* --- Section 1: Page Hero --- */
+.pageHero {
+    padding-top: calc(var(--nav-height) + var(--space-16));
+    padding-bottom: var(--space-16);
+    border-bottom: 1px solid var(--color-divider);
+}
+
+.pageHeroGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .pageHeroGrid {
+        grid-template-columns: 55% 45%;
+    }
+}
+
+.pageHero h1 {
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0;
+    max-width: 16ch;
+}
+
+.sub {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin-top: var(--space-4);
+    margin-bottom: 0;
+}
+
+.heroCtas {
+    margin-top: var(--space-8);
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+}
+
+.pageHeroVisual {
+    display: none;
+    width: 100%;
+    justify-content: flex-end;
+}
+
+@media (min-width: 768px) {
+    .pageHeroVisual {
+        display: flex;
+    }
+}
+
+/* --- Section 2: Solutions Grid --- */
+.solutionsSection {
+    padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+}
+
+.solutionsSection h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.solutionsSectionSub {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    max-width: 56ch;
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-12);
+}
+
+.solutionsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-6);
+}
+
+@media (max-width: 1024px) {
+    .solutionsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    .solutionsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.solutionCard {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.solutionCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06), 0 8px 24px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 1025px) {
+    .solutionCardWide {
+        grid-column: span 2;
+    }
+}
+
+.cardIcon {
+    color: var(--color-primary);
+}
+
+.cardIndustry {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-faint);
+    font-weight: 600;
+}
+
+.solutionCard h3 {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin: 0;
+}
+
+.cardDesc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    flex: 1;
+}
+
+.cardUsecases {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-bottom: var(--space-4);
+    list-style: none;
+    padding: 0;
+}
+
+.cardUsecases li {
+    font-size: var(--text-xs);
+    color: var(--color-text-faint);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+}
+
+.cardUsecases li::before {
+    content: "→";
+    color: var(--color-text-faint);
+}
+
+.cardLink {
+    font-size: var(--text-sm);
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-top: auto;
+    transition: opacity var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.cardLink:hover {
+    opacity: 0.8;
+}
+
+/* --- Section 3: Capabilities --- */
+.capabilitiesSection {
+    padding-block: clamp(var(--space-12), 6vw, var(--space-20));
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-divider);
+}
+
+.capabilitiesSection h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    max-width: 22ch;
+    letter-spacing: -0.02em;
+}
+
+.capabilitiesGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-6);
+    margin-top: var(--space-10);
+}
+
+@media (max-width: 768px) {
+    .capabilitiesGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .capabilitiesGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.capabilityItem {
+    display: flex;
+    flex-direction: column;
+}
+
+.capabilityItemIcon {
+    color: var(--color-primary);
+    margin-bottom: var(--space-3);
+}
+
+.capabilityItem h3 {
+    font-size: var(--text-base);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+}
+
+.capabilityItem p {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+}

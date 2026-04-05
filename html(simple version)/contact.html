@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — MotoNeuron Labs</title>
+    <meta name="description" content="Start an AI project with MotoNeuron Labs. Book a discovery call, send us your brief, or reach out directly.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            /* Type scale */
+            --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+            --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+            --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+            --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+            --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+            --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+            --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+            --text-hero: clamp(3rem, 0.5rem + 7vw, 6rem);
+
+            /* Spacing scale */
+            --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem; --space-4: 1rem;
+            --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; 
+            --space-12: 3rem; --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
+
+            /* Radius */
+            --radius-sm: 0.375rem; --radius-md: 0.5rem;
+            --radius-lg: 0.75rem; --radius-xl: 1rem; --radius-full: 9999px;
+
+            /* Surfaces — dark-first */
+            --color-bg: #080a10;
+            --color-surface: #0e1118;
+            --color-surface-2: #151b26;
+            --color-surface-offset: #1e2535;
+            --color-border: rgba(255,255,255,0.08);
+            --color-divider: rgba(255,255,255,0.08);
+
+            /* Text */
+            --color-text: #e8eaf0;
+            --color-text-muted: #8b90a0;
+            --color-text-faint: #606878;
+
+            /* Accent */
+            --color-primary: #00d4c8;
+            --color-primary-hover: #00b5ab;
+            --color-primary-foreground: #000000;
+            --color-primary-glow: rgba(0, 212, 200, 0.15);
+
+            /* Transitions */
+            --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
+            
+            /* Layout */
+            --nav-height: 72px;
+            --container-width: 1200px;
+        }
+
+        [data-theme="light"] {
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-surface-2: #f1f5f9;
+            --color-surface-offset: #e2e8f0;
+            --color-border: rgba(0,0,0,0.08);
+            --color-divider: rgba(0,0,0,0.08);
+            
+            --color-text: #0f172a;
+            --color-text-muted: #475569;
+            --color-text-faint: #94a3b8;
+            
+            --color-primary: #009e96;
+            --color-primary-hover: #007d76;
+            --color-primary-foreground: #ffffff;
+            --color-primary-glow: rgba(0, 158, 150, 0.15);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --color-bg: #f8fafc;
+                --color-surface: #ffffff;
+                --color-surface-2: #f1f5f9;
+                --color-surface-offset: #e2e8f0;
+                --color-border: rgba(0,0,0,0.08);
+                --color-divider: rgba(0,0,0,0.08);
+                
+                --color-text: #0f172a;
+                --color-text-muted: #475569;
+                --color-text-faint: #94a3b8;
+                
+                --color-primary: #009e96;
+                --color-primary-hover: #007d76;
+                --color-primary-foreground: #ffffff;
+                --color-primary-glow: rgba(0, 158, 150, 0.15);
+            }
+        }
+
+        /* --- Base & Reset --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color var(--transition-smooth), color var(--transition-smooth);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.1;
+            color: var(--color-text);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            border: none;
+            background: none;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* --- Layout Utilities --- */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        @media (min-width: 768px) {
+            .container { padding: 0 var(--space-8); }
+        }
+
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .gap-4 { gap: var(--space-4); }
+        .gap-6 { gap: var(--space-6); }
+        .hidden { display: none; }
+
+        @media (min-width: 768px) {
+            .md\:flex { display: flex; }
+            .md\:hidden { display: none; }
+        }
+
+        /* --- Components --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--space-2);
+            padding: 0 var(--space-6);
+            height: 44px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            font-size: var(--text-sm);
+            transition: all var(--transition-fast);
+            border: 1px solid transparent;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--color-primary);
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-primary-foreground);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            box-shadow: 0 0 16px var(--color-primary-glow);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--color-surface-2);
+            border-color: var(--color-text-muted);
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background: var(--color-bg);
+            border-top: 1px solid var(--color-divider);
+        }
+
+        .footer-upper {
+            padding-block: var(--space-16);
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: var(--space-8);
+        }
+
+        @media (max-width: 768px) {
+            .footer-upper { grid-template-columns: 2fr 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            .footer-upper { grid-template-columns: 1fr; }
+        }
+
+        .footer-brand .tagline {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            max-width: 28ch;
+            margin-top: var(--space-3);
+            line-height: 1.6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-6);
+        }
+
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text-faint);
+            transition: all var(--transition-fast);
+        }
+
+        .social-icon:hover {
+            color: var(--color-text);
+            border-color: var(--color-text-muted);
+            background: var(--color-surface-2);
+        }
+
+        .footer-heading {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-faint);
+            font-weight: 600;
+            margin-bottom: var(--space-4);
+        }
+
+        .footer-col-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .footer-link {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+        }
+
+        .footer-link:hover {
+            color: var(--color-text);
+        }
+
+        .footer-lower {
+            padding: var(--space-6) 0;
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: var(--space-4);
+        }
+
+        .footer-copyright {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: var(--space-6);
+        }
+
+        .footer-legal .footer-link {
+            font-size: var(--text-xs);
+        }
+
+        /* --- Navigation --- */
+        .site-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background-color: color-mix(in srgb, var(--color-bg) 80%, transparent);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            letter-spacing: -0.01em;
+            color: var(--color-text);
+        }
+
+        .brand-logo:hover {
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            align-items: center;
+        }
+
+        .nav-link {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: color var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link[aria-current="page"] {
+            color: var(--color-text);
+        }
+
+        .nav-link[aria-current="page"]::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+        }
+
+        .theme-toggle {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            transition: background-color var(--transition-fast);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--color-surface-2);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-text);
+            border-radius: var(--radius-md);
+        }
+
+        [data-theme="dark"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: none; }
+
+        /* Mobile Drawer */
+        .mobile-menu-backdrop {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 150;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity var(--transition-smooth);
+        }
+
+        .mobile-menu-backdrop.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-menu-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 85%;
+            max-width: 320px;
+            background-color: var(--color-surface);
+            border-left: 1px solid var(--color-border);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-6);
+        }
+
+        .mobile-menu-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-8);
+        }
+
+        .drawer-header .brand-logo {
+            font-size: var(--text-base);
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+            flex: 1;
+        }
+
+        .drawer-links .nav-link {
+            font-size: var(--text-lg);
+            width: fit-content;
+        }
+
+        .drawer-footer {
+            margin-top: auto;
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--color-divider);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drawer-close {
+            color: var(--color-text);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-md);
+            margin-right: -12px;
+        }
+        
+        /* Offset for main content underneath fixed header */
+        main {
+            margin-top: var(--nav-height);
+        }
+
+        /* ==========================================================================
+           PAGE SPECIFIC STYLES
+           ========================================================================== */
+
+        /* --- Section 1: Page Hero --- */
+        .page-hero {
+            padding-top: calc(var(--nav-height) + var(--space-16));
+            padding-bottom: var(--space-12);
+            border-bottom: 1px solid var(--color-divider);
+        }
+
+        .page-hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--space-12);
+            align-items: center;
+            max-width: 760px;
+        }
+
+        .page-hero .eyebrow {
+            font-size: var(--text-xs);
+            color: var(--color-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: var(--space-3);
+            display: block;
+        }
+
+        .page-hero h1 {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0;
+            max-width: 20ch;
+        }
+
+        .page-hero .sub {
+            font-size: var(--text-lg);
+            color: var(--color-text-muted);
+            max-width: 56ch;
+            margin-top: var(--space-4);
+            margin-bottom: 0;
+        }
+
+        /* --- Section 2: Contact Layout --- */
+        .contact-section {
+            padding-block: clamp(var(--space-12), 8vw, var(--space-20));
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.22fr 1fr; /* approx 55/45 */
+            gap: var(--space-16);
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: var(--space-12);
+            }
+        }
+
+        /* Form Column */
+        .contact-form-col {
+            /* Handled in grid */
+        }
+
+        .form-title {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            margin-bottom: var(--space-8);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-6);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-2);
+        }
+
+        .form-group label {
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            background: var(--color-surface-2);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-md);
+            padding: var(--space-3) var(--space-4);
+            font-size: var(--text-base);
+            color: var(--color-text);
+            font-family: inherit;
+            transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px var(--color-primary-glow);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--color-text-faint);
+        }
+
+        .field-error {
+            font-size: var(--text-xs);
+            color: var(--color-error, #f43f5e);
+            display: none;
+            margin-top: 2px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-4);
+        }
+
+        @media (max-width: 480px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-check {
+            display: flex;
+            gap: var(--space-3);
+            align-items: flex-start;
+        }
+
+        .form-check input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            accent-color: var(--color-primary);
+        }
+
+        .form-check label {
+            font-size: var(--text-sm);
+            color: var(--color-text-muted);
+            font-weight: 400;
+            cursor: pointer;
+        }
+
+        .form-submit {
+            width: 100%;
+            height: 52px;
+            font-size: var(--text-base);
+            justify-content: center;
+        }
+
+        .form-privacy {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+            text-align: center;
+            margin-top: var(--space-3);
+        }
+
+        .form-success {
+            background: color-mix(in oklch, var(--color-primary) 8%, var(--color-surface));
+            border: 1px solid color-mix(in oklch, var(--color-primary) 30%, transparent);
+            border-radius: var(--radius-xl);
+            padding: var(--space-10);
+            text-align: center;
+            display: none; /* JS will toggle this */
+        }
+
+        .form-success h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+        }
+
+        .form-success p {
+            font-size: var(--text-base);
+            color: var(--color-text-muted);
+            margin-top: var(--space-3);
+            max-width: 40ch;
+            margin-inline: auto;
+        }
+
+        /* Info Column */
+        .contact-info-col {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-8);
+        }
+
+        .info-heading {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            margin-bottom: var(--space-6);
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-4);
+            padding-bottom: var(--space-6);
+            border-bottom: 1px solid var(--color-divider);
+            margin-bottom: var(--space-6);
+        }
+
+        .contact-method:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .method-icon {
+            color: var(--color-primary);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .method-body {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .method-label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-faint);
+            font-weight: 600;
+        }
+
+        .method-value {
+            font-size: var(--text-sm);
+            color: var(--color-text);
+            font-weight: 500;
+        }
+
+        .method-value a {
+            color: var(--color-text);
+        }
+
+        .method-value a:hover {
+            color: var(--color-primary);
+        }
+
+        .method-link {
+            color: var(--color-primary) !important;
+            font-weight: 500;
+        }
+
+        .method-note {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+        }
+
+        .response-box {
+            background: var(--color-surface);
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius-xl);
+            padding: var(--space-6) var(--space-8);
+        }
+
+        .response-box h4 {
+            font-size: var(--text-base);
+            font-weight: 700;
+            margin-bottom: var(--space-5);
+        }
+
+        .next-step {
+            display: flex;
+            gap: var(--space-4);
+            margin-bottom: var(--space-5);
+        }
+
+        .next-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            background: color-mix(in oklch, var(--color-primary) 12%, var(--color-surface));
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            color: var(--color-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .step-content {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .step-title {
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        .step-desc {
+            font-size: var(--text-xs);
+            color: var(--color-text-muted);
+            line-height: 1.6;
+        }
+
+        .contact-reassurance {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+            line-height: 1.7;
+        }
+
+        /* --- Section 3: Contact Footer Line --- */
+        .contact-footer-line {
+            padding: var(--space-8) 0;
+            background: var(--color-surface);
+            border-top: 1px solid var(--color-divider);
+            text-align: center;
+        }
+
+        .contact-footer-line p {
+            font-size: var(--text-xs);
+            color: var(--color-text-faint);
+        }
+
+        .contact-footer-line a {
+            color: inherit;
+            transition: color var(--transition-fast);
+        }
+
+        .contact-footer-line a:hover {
+            color: var(--color-primary);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SITE NAVIGATION -->
+    <nav class="site-nav">
+        <div class="container flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron Labs
+            </a>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex nav-links">
+                <a href="home.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="solutions.html" class="nav-link">Solutions</a>
+                <a href="ai-partners.html" class="nav-link">AI Partners</a>
+                <a href="case-studies.html" class="nav-link">Case Studies</a>
+            </div>
+
+            <!-- Actions -->
+            <div class="nav-actions">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i data-lucide="sun" class="icon-sun" width="20" height="20"></i>
+                    <i data-lucide="moon" class="icon-moon" width="20" height="20"></i>
+                </button>
+                <a href="contact.html" class="btn btn-primary hidden md:inline-flex">Get Started</a>
+                
+                <button class="mobile-menu-btn md:hidden" aria-label="Open mobile menu">
+                    <i data-lucide="menu" width="24" height="24"></i>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU DRAWER -->
+    <div class="mobile-menu-backdrop" id="mobileMenuBackdrop" aria-hidden="true"></div>
+    <div class="mobile-menu-drawer" id="mobileMenuDrawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+        <div class="drawer-header">
+            <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                    <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                    <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                </svg>
+                MotoNeuron
+            </a>
+            <button class="drawer-close" id="closeMenuBtn" aria-label="Close menu">
+                <i data-lucide="x" width="24" height="24"></i>
+            </button>
+        </div>
+        
+        <div class="drawer-links">
+            <a href="home.html" class="nav-link">Home</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="solutions.html" class="nav-link">Solutions</a>
+            <a href="ai-partners.html" class="nav-link">AI Partners</a>
+            <a href="case-studies.html" class="nav-link">Case Studies</a>
+        </div>
+        
+        <div class="drawer-footer">
+            <a href="contact.html" class="btn btn-primary" style="width: 100%;">
+                Get Started
+                <i data-lucide="arrow-right" width="16" height="16"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- CONTENT STARTS HERE -->
+    <main>
+        
+        <!-- SECTION 1: Page Hero -->
+        <section class="page-hero">
+            <div class="container page-hero-grid">
+                <div class="page-hero-content">
+                    <span class="eyebrow">LET'S BUILD SOMETHING</span>
+                    <h1>Start a Conversation, Ship in Weeks</h1>
+                    <p class="sub">No sales decks. No 6-week discovery phases. Tell us your problem &mdash; we'll come back with a scoped proposal in 48 hours.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Contact Layout -->
+        <section class="contact-section" aria-labelledby="contact-heading">
+            <div class="container">
+                <h2 id="contact-heading" class="sr-only">Contact MotoNeuron Labs</h2>
+                
+                <div class="contact-grid">
+                    
+                    <!-- LEFT: CONTACT FORM -->
+                    <div class="contact-form-col">
+                        <h3 class="form-title">Send Us Your Brief</h3>
+                        
+                        <form class="contact-form" novalidate id="contactForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required placeholder="Priya">
+                                    <span class="field-error">First name is required</span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required placeholder="Ramesh">
+                                    <span class="field-error">Last name is required</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Work Email</label>
+                                <input type="email" id="email" name="email" required placeholder="priya@company.com">
+                                <span class="field-error">Valid work email is required</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="company">Company Name</label>
+                                <input type="text" id="company" name="company" required placeholder="Acme Industries">
+                                <span class="field-error">Company name is required</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project_type">What are you looking to do?</label>
+                                <select id="project_type" name="project_type" required>
+                                    <option value="" disabled selected>Select a project type</option>
+                                    <option value="integration">Model integration into existing product</option>
+                                    <option value="custom_app">Custom AI application development</option>
+                                    <option value="rag">RAG / Enterprise search implementation</option>
+                                    <option value="consulting">AI strategy and roadmap consulting</option>
+                                    <option value="on_prem">On-premise / air-gapped AI deployment</option>
+                                    <option value="fine_tuning">Fine-tuning an existing foundation model</option>
+                                    <option value="other">Something else</option>
+                                </select>
+                                <span class="field-error">Please select a project type</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="use_case">Describe your use case</label>
+                                <textarea id="use_case" name="use_case" rows="5" placeholder="What's the problem you're solving? What does success look like? Any constraints we should know about?"></textarea>
+                                <span class="field-error">Please provide some details</span>
+                            </div>
+                            
+                            <div class="form-check">
+                                <input type="checkbox" id="nda" name="nda">
+                                <label for="nda">I'd like to discuss under NDA before sharing details</label>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">
+                                <span id="submitText">Send Brief</span>
+                                <i data-lucide="send" width="18" height="18"></i>
+                            </button>
+                            
+                            <p class="form-privacy">We respond within 48 hours. Your details are never sold or shared.</p>
+                        </form>
+                        
+                        <div class="form-success" id="formSuccess">
+                            <i data-lucide="check-circle-2" width="48" height="48" style="color: var(--color-primary); margin-bottom: var(--space-4); display: inline-block;"></i>
+                            <h3>Brief received.</h3>
+                            <p>We'll review it and come back with a scoped proposal within 48 hours.</p>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: CONTACT INFO -->
+                    <div class="contact-info-col">
+                        
+                        <div class="contact-methods">
+                            <h3 class="info-heading">Other Ways to Reach Us</h3>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i data-lucide="mail" width="20" height="20"></i>
+                                </div>
+                                <div class="method-body">
+                                    <span class="method-label">EMAIL</span>
+                                    <span class="method-value"><a href="mailto:hello@motoneuronlabs.ai">hello@motoneuronlabs.ai</a></span>
+                                    <span class="method-note">Typical response: within 24 hours</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i data-lucide="calendar" width="20" height="20"></i>
+                                </div>
+                                <div class="method-body">
+                                    <span class="method-label">DISCOVERY CALL</span>
+                                    <span class="method-value"><a href="#" class="method-link">Book a 30-min scoping call</a></span>
+                                    <span class="method-note">Available Mon&ndash;Fri, 9am&ndash;6pm IST / CET / EST</span>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i data-lucide="map-pin" width="20" height="20"></i>
+                                </div>
+                                <div class="method-body">
+                                    <span class="method-label">HEADQUARTERS</span>
+                                    <span class="method-value">Hyderabad, India</span>
+                                    <span class="method-note">Remote-first. Clients worldwide.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="response-box">
+                            <h4>What happens next?</h4>
+                            
+                            <div class="next-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <span class="step-title">We review your brief</span>
+                                    <span class="step-desc">Our team reads every submission personally. No auto-responders.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="next-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <span class="step-title">Scoped proposal in 48 hours</span>
+                                    <span class="step-desc">We come back with a specific technical approach, timeline, and cost range.</span>
+                                </div>
+                            </div>
+                            
+                            <div class="next-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <span class="step-title">Kick off on your terms</span>
+                                    <span class="step-desc">Fixed-scope engagement or ongoing retainer &mdash; your choice. No lock-in.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="contact-reassurance">MotoNeuron Labs does not use your submitted information for marketing purposes. We contact you only in relation to your inquiry.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Contact Footer Line -->
+        <section class="contact-footer-line" aria-hidden="true">
+            <p>MotoNeuron Labs · Hyderabad, India · <a href="mailto:hello@motoneuronlabs.ai">hello@motoneuronlabs.ai</a></p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" role="contentinfo">
+        <div class="container">
+            <div class="footer-upper">
+                <div class="footer-brand">
+                    <a href="home.html" class="brand-logo" aria-label="MotoNeuron Labs Home">
+                        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+                            <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fill-opacity="0.2" stroke="var(--color-primary)" stroke-width="2" stroke-linejoin="round"/>
+                            <circle cx="16" cy="16" r="3" fill="var(--color-primary)"/>
+                        </svg>
+                        MotoNeuron Labs
+                    </a>
+                    <p class="tagline">Intelligence, Engineered for Your Business.</p>
+                    <div class="social-icons">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="LinkedIn">
+                            <i data-lucide="linkedin" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Twitter">
+                            <i data-lucide="twitter" width="18" height="18"></i>
+                        </a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="GitHub">
+                            <i data-lucide="github" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Services</h3>
+                    <div class="footer-col-links">
+                        <a href="services.html" class="footer-link">Model Integration</a>
+                        <a href="services.html" class="footer-link">Fine-tuning</a>
+                        <a href="services.html" class="footer-link">AI Strategy</a>
+                        <a href="services.html" class="footer-link">Data Pipelines</a>
+                        <a href="services.html" class="footer-link">MLOps</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Company</h3>
+                    <div class="footer-col-links">
+                        <a href="about.html" class="footer-link">About</a>
+                        <a href="case-studies.html" class="footer-link">Case Studies</a>
+                        <a href="ai-partners.html" class="footer-link">AI Partners</a>
+                        <a href="#" class="footer-link">Blog</a>
+                        <a href="#" class="footer-link">Careers</a>
+                    </div>
+                </div>
+
+                <div class="footer-col">
+                    <h3 class="footer-heading">Contact</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: var(--space-4);">
+                        Ready to explore what AI can do for your business?
+                    </p>
+                    <a href="contact.html" class="btn btn-primary" style="width: 100%; justify-content: center; margin-bottom: var(--space-4);">
+                        Start a Project
+                    </a>
+                    <a href="mailto:hello@motoneuronlabs.ai" class="footer-link">hello@motoneuronlabs.ai</a>
+                </div>
+            </div>
+            
+            <div class="footer-lower">
+                <span class="footer-copyright">&copy; 2026 MotoNeuron Labs. All rights reserved.</span>
+                <div class="footer-legal">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // GSAP Scroll Animations
+        if (window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+            gsap.registerPlugin(ScrollTrigger);
+
+            gsap.fromTo('.contact-form-col',
+                { opacity: 0, x: -16 },
+                { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out',
+                  scrollTrigger: { trigger: '.contact-section', start: 'top 80%' } }
+            );
+
+            gsap.fromTo('.contact-info-col',
+                { opacity: 0, x: 16 },
+                { opacity: 1, x: 0, duration: 0.7, ease: 'power2.out', delay: 0.15,
+                  scrollTrigger: { trigger: '.contact-section', start: 'top 80%' } }
+            );
+        }
+
+        // Form Submission Logic
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = document.getElementById('submitText');
+        const formSuccess = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            let isValid = true;
+            const required = form.querySelectorAll('[required]');
+            required.forEach(field => {
+                const group = field.closest('.form-group');
+                const error = group ? group.querySelector('.field-error') : null;
+                if (!field.value.trim()) {
+                    isValid = false;
+                    if (error) { error.style.display = 'block'; }
+                    field.style.borderColor = 'var(--color-error, #f43f5e)';
+                } else {
+                    if (error) { error.style.display = 'none'; }
+                    field.style.borderColor = '';
+                }
+            });
+            
+            if (!isValid) return;
+            
+            // Simulate submission
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                formSuccess.style.display = 'block';
+            }, 1200);
+        });
+
+        // Clear error state on input
+        form.querySelectorAll('[required]').forEach(field => {
+            field.addEventListener('input', function() {
+                this.style.borderColor = '';
+                const group = this.closest('.form-group');
+                const error = group ? group.querySelector('.field-error') : null;
+                if (error) error.style.display = 'none';
+            });
+        });
+
+        // Mobile Menu Logic
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuDrawer = document.getElementById('mobileMenuDrawer');
+        const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+        function toggleMenu() {
+            const isOpen = mobileMenuDrawer.classList.contains('open');
+            if (isOpen) {
+                mobileMenuDrawer.classList.remove('open');
+                mobileMenuBackdrop.classList.remove('open');
+                document.body.style.overflow = '';
+            } else {
+                mobileMenuDrawer.classList.add('open');
+                mobileMenuBackdrop.classList.add('open');
+                document.body.style.overflow = 'hidden'; // Prevent bg scrolling
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileMenuBackdrop.addEventListener('click', toggleMenu);
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Sync with OS preference on load if no explicit theme set
+        if (!html.hasAttribute('data-theme')) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+                html.setAttribute('data-theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+        });
+    </script>
+</body>
+</html>
