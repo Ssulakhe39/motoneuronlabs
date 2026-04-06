@@ -34,9 +34,12 @@
   z-index: 10;
   max-width: 800px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
 }
 @media (max-width: 640px) {
-  .heroContent { text-align: center; } /* Add alignment on mobile */
+  .heroContent { text-align: center; align-items: center; }
 }
 
 .heroTitle {
@@ -73,7 +76,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
-  margin-top: var(--space-8);
+  margin-top: var(--space-4);
 }
 
 @media (min-width: 768px) {

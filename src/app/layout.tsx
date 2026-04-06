@@ -21,9 +21,10 @@ export default function RootLayout({
         <script dangerouslySetInnerHTML={{ __html: `
           (function(){
             try {
+              var stored = localStorage.getItem('theme');
               var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-              var isDark = prefersDark;
-              document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+              var theme = stored || (prefersDark ? 'dark' : 'light');
+              document.documentElement.setAttribute('data-theme', theme);
             } catch (e) {}
           })()
         `}} />
