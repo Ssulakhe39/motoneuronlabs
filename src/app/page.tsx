@@ -27,11 +27,11 @@ export default function Home() {
             <h1 className={styles.heroTitle}>
               <span>Where Enterprise</span>
               <span>Decisions <span className={styles.textAccent}>Meet</span></span>
-              <span>Machine Precision.</span>
+              <span>Machine Intelligence.</span>
             </h1>
             
             <p className={styles.heroSubtitle}>
-              MotoNeuron Labs integrates Claude, GPT, Gemini, and other leading models into your workflows — tuned to your industry, your data, your rules.
+              MotoNeuron Labs integrates Popular AI (Commercial and Open Source) Models like: Claude, GPT, Gemini, and other leading models into your workflows — tuned to your industry, your data, your rules.
             </p>
             
             <div className={styles.heroCtas}>

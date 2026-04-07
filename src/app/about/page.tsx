@@ -162,9 +162,9 @@ export default function About() {
                   <span className={styles.teamInitials}>AK</span>
                 </div>
                 <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Arjun Khanna</h3>
-                  <p className={styles.teamRole}>Co-Founder &amp; CEO</p>
-                  <p className={styles.teamBio}>Former ML lead at a Series B fintech. Obsessed with the gap between AI benchmarks and real deployments.</p>
+                  <h3 className={styles.teamName}>Sample Text</h3>
+                  <p className={styles.teamRole}>Founder &amp; CEO</p>
+                  <p className={styles.teamBio}>Part of Major Leading Tech firms like Pinterest, Google among others. Obsessed with the gap between AI benchmarks and real deployments.</p>
                 </div>
               </article>
 
@@ -174,7 +174,7 @@ export default function About() {
                   <span className={styles.teamInitials}>PR</span>
                 </div>
                 <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Priya Ramesh</h3>
+                  <h3 className={styles.teamName}>Sample Text</h3>
                   <p className={styles.teamRole}>Co-Founder &amp; CTO</p>
                   <p className={styles.teamBio}>Ex-Google Brain. Built and shipped production NLP systems serving 200M+ users. Believes in boring infrastructure.</p>
                 </div>
@@ -186,47 +186,12 @@ export default function About() {
                   <span className={styles.teamInitials}>MO</span>
                 </div>
                 <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Marcus Osei</h3>
+                  <h3 className={styles.teamName}>Sample Text</h3>
                   <p className={styles.teamRole}>VP of Engineering</p>
                   <p className={styles.teamBio}>Infrastructure-first thinker. Has never shipped a model without an on-call runbook and a rollback button.</p>
                 </div>
               </article>
 
-              {/* Member 4 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>YT</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Yuna Takahashi</h3>
-                  <p className={styles.teamRole}>Head of AI Research</p>
-                  <p className={styles.teamBio}>Specializes in fine-tuning and model compression. Can make a small model outperform a large one given the right data.</p>
-                </div>
-              </article>
-
-              {/* Member 5 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>DS</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>David Solis</h3>
-                  <p className={styles.teamRole}>Head of Client Partnerships</p>
-                  <p className={styles.teamBio}>Translates between what clients think they want and what will actually solve their problem. Has a 100% project completion rate.</p>
-                </div>
-              </article>
-
-              {/* Member 6 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>NB</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Nadia Belova</h3>
-                  <p className={styles.teamRole}>Lead AI Engineer</p>
-                  <p className={styles.teamBio}>Builds the pipelines that make everything else possible. Ask her about RAG architecture at your own risk.</p>
-                </div>
-              </article>
             </div>
           </ScrollReveal>
         </div>

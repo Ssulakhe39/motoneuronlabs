@@ -7,6 +7,14 @@
   overflow: hidden;
 }
 
+@media (max-width: 768px) {
+  .hero {
+    min-height: auto;
+    padding-top: var(--space-12);
+    padding-bottom: var(--space-12);
+  }
+}
+
 .heroGlow {
   position: absolute;
   inset: 0;
@@ -40,6 +48,7 @@
 }
 @media (max-width: 640px) {
   .heroContent { text-align: center; align-items: center; }
+  .heroCtas { justify-content: center; }
 }
 
 .heroTitle {
@@ -48,6 +57,9 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   margin: 0;
+}
+@media (max-width: 480px) {
+  .heroTitle { font-size: var(--text-2xl); }
 }
 
 .heroTitle span {
@@ -118,13 +130,14 @@
   min-height: 240px;
   max-width: 100%;
   overflow: hidden;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
 
 @media (min-width: 768px) {
   .heroVisual {
+      display: flex;
       min-height: 320px;
   }
 }
@@ -135,9 +148,13 @@
   left: 50%;
   transform: translateX(-50%);
   color: var(--color-text-faint);
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .scrollIndicator { display: flex; }
 }
 
 @keyframes bounceChevron {
@@ -182,25 +199,16 @@
 }
 
 .partnersGrid {
-  display: flex;
-  gap: var(--space-8);
-  overflow-x: auto;
-  padding-bottom: var(--space-4);
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-
-.partnersGrid::-webkit-scrollbar {
-  display: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+  justify-items: center;
 }
 
 @media (min-width: 768px) {
   .partnersGrid {
-      justify-content: center;
-      flex-wrap: wrap;
-      overflow-x: visible;
-      padding-bottom: 0;
+      grid-template-columns: repeat(6, 1fr);
+      gap: var(--space-8);
   }
 }
 
@@ -209,8 +217,6 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-3);
-  scroll-snap-align: center;
-  flex-shrink: 0;
   text-decoration: none;
   outline: none;
 }
@@ -432,12 +438,14 @@
 
 .proofGrid {
   display: grid;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 1fr;
   gap: var(--space-8);
 }
 
-@media (max-width: 768px) {
-  .proofGrid { grid-template-columns: 1fr; }
+@media (min-width: 768px) {
+  .proofGrid {
+    grid-template-columns: 60% 40%;
+  }
 }
 
 .proofStatsCol {
