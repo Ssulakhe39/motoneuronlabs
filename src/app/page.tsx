@@ -8,8 +8,8 @@ import { CtaBanner } from '@/components/ui/CtaBanner'
 import { CountUp } from '@/components/ui/CountUp'
 
 export const metadata: Metadata = {
-  title: 'MotoNeuron Labs — Intelligence, Engineered for Your Business',
-  description: 'MotoNeuron Labs delivers production-grade AI services and custom AI applications for enterprise businesses, powered by Claude, OpenAI, Gemini, and more.',
+  title: 'Motoneuron Labs — Intelligence, Engineered for Your Business',
+  description: 'Motoneuron Labs delivers production-grade AI services and custom AI applications for enterprise businesses, powered by Claude, OpenAI, Gemini, and more.',
 }
 
 export default function Home() {
@@ -31,7 +31,7 @@ export default function Home() {
             </h1>
             
             <p className={styles.heroSubtitle}>
-              MotoNeuron Labs integrates Popular AI (Commercial and Open Source) Models like: Claude, GPT, Gemini, and other leading models into your workflows — tuned to your industry, your data, your rules.
+              Motoneuron Labs integrates Popular AI (Commercial and Open Source) Models like: Claude, GPT, Gemini, and other leading models into your workflows — tuned to your industry, your data, your rules.
             </p>
             
             <div className={styles.heroCtas}>
@@ -235,7 +235,7 @@ export default function Home() {
           <ScrollReveal selector={`.${styles.proofQuote}`} x={20} y={0}>
             <div className={styles.proofQuote}>
               <div className={styles.quoteMark}>&quot;</div>
-              <p className={styles.quoteText}>MotoNeuron Labs didn&apos;t just integrate an AI layer — they rebuilt how our underwriting team makes decisions. We went from 3-day turnarounds to 4-hour cycles within the first month.</p>
+              <p className={styles.quoteText}>Motoneuron Labs didn&apos;t just integrate an AI layer — they rebuilt how our underwriting team makes decisions. We went from 3-day turnarounds to 4-hour cycles within the first month.</p>
               <div className={styles.quoteAttribution}>
                 <div className={styles.quoteName}>Sarah Chen</div>
                 <div className={styles.quoteTitle}>VP of Operations, Meridian Financial Group</div>

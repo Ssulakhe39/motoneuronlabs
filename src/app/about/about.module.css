@@ -41,13 +41,19 @@
 .missionGrid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-10);
+  gap: var(--space-8);
   align-items: start;
 }
 
 @media (min-width: 768px) {
   .missionGrid {
       grid-template-columns: 1.22fr 1fr;
+      gap: var(--space-10);
+  }
+}
+
+@media (min-width: 1024px) {
+  .missionGrid {
       gap: var(--space-12);
   }
 }
@@ -82,11 +88,18 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-6) var(--space-8);
+  padding: var(--space-4) var(--space-6);
   display: flex;
   align-items: center;
-  gap: var(--space-6);
+  gap: var(--space-4);
   transition: transform var(--transition-smooth);
+}
+
+@media (min-width: 640px) {
+  .foundingStat {
+    padding: var(--space-6) var(--space-8);
+    gap: var(--space-6);
+  }
 }
 
 .foundingStat:hover {
@@ -165,11 +178,18 @@
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-8);
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
+  gap: var(--space-3);
   transition: border-color var(--transition-smooth);
+}
+
+@media (min-width: 640px) {
+  .valueCard {
+    padding: var(--space-8);
+    gap: var(--space-4);
+  }
 }
 
 .valueCard:hover {

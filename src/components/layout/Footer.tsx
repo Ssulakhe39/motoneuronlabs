@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -6,13 +7,8 @@ export default function Footer() {
       <div className="container">
         <div className="footer-upper">
           <div className="footer-brand">
-            <Link href="/" className="brand-logo" aria-label="MotoNeuron Labs Home">
-              <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinejoin="round" />
-                <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fillOpacity="0.2" stroke="var(--color-primary)" strokeWidth="2" strokeLinejoin="round" />
-                <circle cx="16" cy="16" r="3" fill="var(--color-primary)" />
-              </svg>
-              MotoNeuron Labs
+            <Link href="/" className="brand-logo" aria-label="Motoneuron Labs Home">
+              <Image src="/logo1.webp" alt="Motoneuron Labs" width={220} height={72} style={{ height: '64px', width: 'auto' }} />
             </Link>
             <p className="tagline">Intelligence, Engineered for Your Business.</p>
             <div className="social-icons">
@@ -43,8 +39,6 @@ export default function Footer() {
             <h3 className="footer-heading">Company</h3>
             <div className="footer-col-links">
               <Link href="/about" className="footer-link">About</Link>
-              <Link href="/case-studies" className="footer-link">Case Studies</Link>
-              <Link href="/ai-partners" className="footer-link">AI Partners</Link>
               <Link href="#" className="footer-link">Blog</Link>
               <Link href="#" className="footer-link">Careers</Link>
             </div>
@@ -58,12 +52,12 @@ export default function Footer() {
             <Link href="/contact" className="btn btn-primary" style={{ width: '100%', justifyContent: 'center', marginBottom: 'var(--space-4)' }}>
               Start a Project
             </Link>
-            <a href="mailto:hello@motoneuronlabs.ai" className="footer-link">hello@motoneuronlabs.ai</a>
+            <a href="mailto:sales@motoneuronlabs.com" className="footer-link">sales@motoneuronlabs.com</a>
           </div>
         </div>
 
         <div className="footer-lower">
-          <span className="footer-copyright">&copy; 2026 MotoNeuron Labs. All rights reserved.</span>
+          <span className="footer-copyright">&copy; 2026 Motoneuron Labs. All rights reserved.</span>
           <div className="footer-legal">
             <Link href="#" className="footer-link">Privacy Policy</Link>
             <Link href="#" className="footer-link">Terms of Service</Link>

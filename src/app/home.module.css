@@ -81,18 +81,32 @@
 .heroCtas {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .heroCtas {
+    gap: var(--space-4);
+  }
 }
 
 .heroStats {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-6);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
   margin-top: var(--space-4);
+}
+
+@media (min-width: 480px) {
+  .heroStats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+  }
 }
 
 @media (min-width: 768px) {
   .heroStats {
+      display: flex;
       flex-direction: row;
       align-items: center;
       gap: var(--space-8);
@@ -200,9 +214,15 @@
 
 .partnersGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-6);
   justify-items: center;
+}
+
+@media (min-width: 480px) {
+  .partnersGrid {
+      grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 768px) {
@@ -221,6 +241,28 @@
   outline: none;
 }
 
+.partnerLogo img,
+.partnerLogo svg {
+  width: 56px;
+  height: 56px;
+}
+
+@media (min-width: 640px) {
+  .partnerLogo img,
+  .partnerLogo svg {
+    width: 72px;
+    height: 72px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .partnerLogo img,
+  .partnerLogo svg {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 .partnerLogo img {
   filter: grayscale(100%) opacity(0.45);
   transition: filter var(--transition-smooth), opacity var(--transition-smooth);
@@ -231,8 +273,8 @@
 }
 
 .partnerLogoText {
-  width: 80px;
-  height: 80px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -244,6 +286,13 @@
   color: var(--color-text-faint);
   opacity: 0.45;
   transition: all var(--transition-smooth);
+}
+
+@media (min-width: 640px) {
+  .partnerLogoText { width: 72px; height: 72px; }
+}
+@media (min-width: 1024px) {
+  .partnerLogoText { width: 80px; height: 80px; }
 }
 
 .partnerLogo:hover .partnerLogoText, .partnerLogo:focus-visible .partnerLogoText {
@@ -417,16 +466,20 @@
 .bentoCardE p { margin-bottom: 0; }
 
 @media (max-width: 1024px) {
-  .bentoCardA { grid-column: 1 / 7; grid-row: auto; }
-  .bentoCardB, .bentoCardC { grid-column: span 3; grid-row: auto; }
-  .bentoCardD, .bentoCardE { grid-column: span 3; grid-row: auto; }
+  .bentoGrid { grid-template-columns: repeat(2, 1fr); }
+  .bentoCardA { grid-column: 1 / -1; grid-row: auto; }
+  .bentoCardB, .bentoCardC { grid-column: span 1; grid-row: auto; }
+  .bentoCardD, .bentoCardE { grid-column: span 1; grid-row: auto; }
 }
 
 @media (max-width: 768px) {
+  .bentoGrid { grid-template-columns: 1fr; }
   .bentoCardA, .bentoCardB, .bentoCardC, .bentoCardD, .bentoCardE {
-      grid-column: 1 / 7;
+      grid-column: 1 / -1;
       grid-row: auto;
   }
+  .bentoCardA { padding: var(--space-6); }
+  .bentoCardA h3 { font-size: var(--text-lg); }
 }
 
 .proofSection {
@@ -443,6 +496,12 @@
 }
 
 @media (min-width: 768px) {
+  .proofGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
   .proofGrid {
     grid-template-columns: 60% 40%;
   }
@@ -474,11 +533,18 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
-  padding: var(--space-8);
+  padding: var(--space-6);
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+  gap: var(--space-4);
   height: 100%;
+}
+
+@media (min-width: 640px) {
+  .proofQuote {
+    padding: var(--space-8);
+    gap: var(--space-6);
+  }
 }
 
 .quoteMark {

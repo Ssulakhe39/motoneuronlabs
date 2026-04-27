@@ -7,7 +7,7 @@ import { CtaBanner } from '@/components/ui/CtaBanner'
 
 export const metadata: Metadata = {
   title: 'About',
-  description: 'MotoNeuron Labs is an AI services company building practical, production-grade AI for enterprise businesses.'
+  description: 'Motoneuron Labs is an AI services company building practical, production-grade AI for enterprise businesses.'
 }
 
 export default function About() {
@@ -21,7 +21,7 @@ export default function About() {
             <div className="hero-reveal">
               <SectionEyebrow>OUR STORY</SectionEyebrow>
               <h1>We Build AI That Earns Its Place in Production</h1>
-              <p className={styles.sub}>MotoNeuron Labs was founded on one belief: AI is only valuable when it solves a real problem reliably. Not demos. Not pilots that never ship. Production-grade AI, built to last.</p>
+              <p className={styles.sub}>Motoneuron Labs was founded on one belief: AI is only valuable when it solves a real problem reliably. Not demos. Not pilots that never ship. Production-grade AI, built to last.</p>
             </div>
           </ScrollReveal>
         </div>
@@ -40,7 +40,7 @@ export default function About() {
                 
                 <p>Most enterprises don&apos;t lack AI ambition — they lack execution. They&apos;ve run the proof-of-concepts, attended the conferences, and watched the demos. What they haven&apos;t found is a partner who can take a messy real-world dataset, an existing tech stack, and a specific business objective — and ship something that works.</p>
                 
-                <p>MotoNeuron Labs was founded to close that gap. We are not researchers publishing benchmarks. We are engineers and applied scientists who have shipped AI into production environments with real constraints: legacy systems, compliance requirements, limited labeled data, latency budgets, and skeptical end users.</p>
+                <p>Motoneuron Labs was founded to close that gap. We are not researchers publishing benchmarks. We are engineers and applied scientists who have shipped AI into production environments with real constraints: legacy systems, compliance requirements, limited labeled data, latency budgets, and skeptical end users.</p>
                 
                 <p>Every engagement starts with the outcome you&apos;re trying to move, not the model we want to use. Model selection, architecture, integration approach — all of it follows from the business objective.</p>
               </div>
@@ -138,60 +138,6 @@ export default function About() {
                 <h3 className={styles.valueTitle}>We Leave You Independent</h3>
                 <p className={styles.valueDesc}>Our goal is for your team to own and maintain what we build. Every engagement includes knowledge transfer, documentation, and a clean handoff.</p>
               </article>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* SECTION 4: Team */}
-      <section className={styles.teamSection} aria-labelledby="team-heading">
-        <div className="container">
-          <ScrollReveal selector={`.${styles.sectionHeader} > *`} y={16} stagger={0.1}>
-            <div className={styles.sectionHeader}>
-              <SectionEyebrow>THE TEAM</SectionEyebrow>
-              <h2 id="team-heading">The People Behind the Models</h2>
-              <p className={styles.sub}>Builders, not consultants.</p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal selector={`.${styles.teamCard}`} y={24} stagger={0.1}>
-            <div className={styles.teamGrid}>
-              {/* Member 1 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>AK</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Sample Text</h3>
-                  <p className={styles.teamRole}>Founder &amp; CEO</p>
-                  <p className={styles.teamBio}>Part of Major Leading Tech firms like Pinterest, Google among others. Obsessed with the gap between AI benchmarks and real deployments.</p>
-                </div>
-              </article>
-
-              {/* Member 2 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>PR</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Sample Text</h3>
-                  <p className={styles.teamRole}>Co-Founder &amp; CTO</p>
-                  <p className={styles.teamBio}>Ex-Google Brain. Built and shipped production NLP systems serving 200M+ users. Believes in boring infrastructure.</p>
-                </div>
-              </article>
-
-              {/* Member 3 */}
-              <article className={styles.teamCard}>
-                <div className={styles.teamCardAvatar}>
-                  <span className={styles.teamInitials}>MO</span>
-                </div>
-                <div className={styles.teamCardBody}>
-                  <h3 className={styles.teamName}>Sample Text</h3>
-                  <p className={styles.teamRole}>VP of Engineering</p>
-                  <p className={styles.teamBio}>Infrastructure-first thinker. Has never shipped a model without an on-call runbook and a rollback button.</p>
-                </div>
-              </article>
-
             </div>
           </ScrollReveal>
         </div>

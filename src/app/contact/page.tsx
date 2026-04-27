@@ -1,7 +1,5 @@
 import styles from "./contact.module.css";
-import { Mail, Calendar, MapPin } from "lucide-react";
-import Link from "next/link";
-import ContactForm from "./ContactForm";
+import { Mail, MapPin } from "lucide-react";
 
 
 export default function ContactPage() {
@@ -25,20 +23,14 @@ export default function ContactPage() {
       <section className={styles.contactSection} aria-labelledby="contact-heading">
         <div className="container">
           <h2 id="contact-heading" className={styles.srOnly}>
-            Contact MotoNeuron Labs
+            Contact Motoneuron Labs
           </h2>
 
           <div className={styles.contactGrid}>
-            {/* LEFT: CONTACT FORM */}
-            <div>
-              <h3 className={styles.formTitle}>Send Us Your Brief</h3>
-              <ContactForm />
-            </div>
-
-            {/* RIGHT: CONTACT INFO */}
+            {/* CONTACT INFO */}
             <div>
               <div className="contact-methods">
-                <h3 className={styles.infoHeading}>Other Ways to Reach Us</h3>
+                <h3 className={styles.infoHeading}>How to Reach Us</h3>
 
                 <div className={styles.contactMethod}>
                   <div className={styles.methodIcon}>
@@ -47,29 +39,12 @@ export default function ContactPage() {
                   <div className={styles.methodBody}>
                     <span className={styles.methodLabel}>EMAIL</span>
                     <span className={styles.methodValue}>
-                      <a href="mailto:hello@motoneuronlabs.ai">
-                        hello@motoneuronlabs.ai
+                      <a href="mailto:sales@motoneuronlabs.com">
+                        sales@motoneuronlabs.com
                       </a>
                     </span>
                     <span className={styles.methodNote}>
                       Typical response: within 24 hours
-                    </span>
-                  </div>
-                </div>
-
-                <div className={styles.contactMethod}>
-                  <div className={styles.methodIcon}>
-                    <Calendar width={20} height={20} />
-                  </div>
-                  <div className={styles.methodBody}>
-                    <span className={styles.methodLabel}>DISCOVERY CALL</span>
-                    <span className={styles.methodValue}>
-                      <Link href="#" className={styles.methodLink}>
-                        Book a 30-min scoping call
-                      </Link>
-                    </span>
-                    <span className={styles.methodNote}>
-                      Available Mon&ndash;Fri, 9am&ndash;6pm IST / CET / EST
                     </span>
                   </div>
                 </div>
@@ -125,7 +100,7 @@ export default function ContactPage() {
               </div>
 
               <p className={styles.contactReassurance}>
-                MotoNeuron Labs does not use your submitted information for marketing
+                Motoneuron Labs does not use your submitted information for marketing
                 purposes. We contact you only in relation to your inquiry.
               </p>
             </div>
@@ -136,8 +111,8 @@ export default function ContactPage() {
       {/* SECTION 3: Contact Footer Line */}
       <section className={styles.contactFooterLine} aria-hidden="true">
         <p>
-          MotoNeuron Labs · Hyderabad, India ·{" "}
-          <a href="mailto:hello@motoneuronlabs.ai">hello@motoneuronlabs.ai</a>
+          Motoneuron Labs · Hyderabad, India ·{" "}
+          <a href="mailto:sales@motoneuronlabs.com">sales@motoneuronlabs.com</a>
         </p>
       </section>
     </main>

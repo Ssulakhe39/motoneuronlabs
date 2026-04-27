@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer'
 import ThemeProvider from '@/components/layout/ThemeProvider'
 
 export const metadata: Metadata = {
-  title: { template: '%s — MotoNeuron Labs', default: 'MotoNeuron Labs' },
+  title: { template: '%s — Motoneuron Labs', default: 'Motoneuron Labs' },
   description: 'Intelligence, Engineered for Your Business.',
   metadataBase: new URL('https://motoneuronlabs.ai'),
 }

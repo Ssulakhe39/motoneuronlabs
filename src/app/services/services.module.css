@@ -47,10 +47,17 @@
 }
 
 .heroCtas {
-    margin-top: var(--space-8);
+    margin-top: var(--space-6);
     display: flex;
-    gap: var(--space-4);
+    gap: var(--space-3);
     flex-wrap: wrap;
+}
+
+@media (min-width: 640px) {
+    .heroCtas {
+        margin-top: var(--space-8);
+        gap: var(--space-4);
+    }
 }
 
 .pageHeroVisual {
@@ -192,19 +199,21 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-6);
-    margin-top: var(--space-12);
+    margin-top: var(--space-8);
     position: relative;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 480px) {
     .engagementSteps {
         grid-template-columns: repeat(2, 1fr);
+        margin-top: var(--space-10);
     }
 }
 
 @media (min-width: 768px) {
     .engagementSteps {
         grid-template-columns: repeat(4, 1fr);
+        margin-top: var(--space-12);
     }
 
     .engagementSteps::before {

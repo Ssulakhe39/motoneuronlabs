@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { Sun, Moon, Menu, X, ArrowRight } from 'lucide-react'
 import { useTheme } from '@/components/layout/ThemeProvider'
@@ -11,8 +12,6 @@ const navLinks = [
   { href: '/about', label: 'About' },
   { href: '/services', label: 'Services' },
   { href: '/solutions', label: 'Solutions' },
-  { href: '/ai-partners', label: 'AI Partners' },
-  { href: '/case-studies', label: 'Case Studies' },
 ]
 
 export default function Navbar() {
@@ -39,13 +38,8 @@ export default function Navbar() {
       <nav className="site-nav">
         <div className="container flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="brand-logo" aria-label="MotoNeuron Labs Home">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fillOpacity="0.2" stroke="var(--color-primary)" strokeWidth="2" strokeLinejoin="round" />
-              <circle cx="16" cy="16" r="3" fill="var(--color-primary)" />
-            </svg>
-            MotoNeuron Labs
+          <Link href="/" className="brand-logo" aria-label="Motoneuron Labs Home">
+            <Image src="/logo1.webp" alt="Motoneuron Labs" width={200} height={60} style={{ height: '56px', width: 'auto' }} priority />
           </Link>
 
           {/* Desktop Links */}
@@ -106,13 +100,8 @@ export default function Navbar() {
         aria-label="Mobile Navigation"
       >
         <div className="drawer-header">
-          <Link href="/" className="brand-logo" aria-label="MotoNeuron Labs Home">
-            <svg width="24" height="24" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M16 2.66663L2.66663 10V22L16 29.3333L29.3333 22V10L16 2.66663Z" stroke="var(--color-primary)" strokeWidth="2.5" strokeLinejoin="round" />
-              <path d="M16 8L8 12.5V19.5L16 24L24 19.5V12.5L16 8Z" fill="var(--color-primary)" fillOpacity="0.2" stroke="var(--color-primary)" strokeWidth="2" strokeLinejoin="round" />
-              <circle cx="16" cy="16" r="3" fill="var(--color-primary)" />
-            </svg>
-            MotoNeuron
+          <Link href="/" className="brand-logo" aria-label="Motoneuron Labs Home">
+            <Image src="/logo1.webp" alt="Motoneuron Labs" width={180} height={56} style={{ height: '48px', width: 'auto' }} />
           </Link>
           <button
             className="drawer-close"

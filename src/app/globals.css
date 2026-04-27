@@ -46,7 +46,7 @@
     --transition-smooth: 300ms cubic-bezier(0.16, 1, 0.3, 1);
     
     /* Layout */
-    --nav-height: 72px;
+    --nav-height: 64px;
     --container-width: 1200px;
 }
 
@@ -152,6 +152,7 @@ button {
 
 @media (min-width: 768px) {
     .md\:flex { display: flex; }
+    .md\:inline-flex { display: inline-flex; }
     .md\:hidden { display: none; }
 }
 
@@ -168,6 +169,7 @@ button {
     font-size: var(--text-sm);
     transition: all var(--transition-fast);
     border: 1px solid transparent;
+    white-space: nowrap;
 }
 
 .btn:focus-visible {
@@ -206,13 +208,13 @@ button {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-8);
-  padding-block: var(--space-12);
+  padding-block: var(--space-10);
 }
-@media (min-width: 640px) {
+@media (min-width: 480px) {
   .footer-upper { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1024px) {
-  .footer-upper { grid-template-columns: 2fr 1fr 1fr 1fr; }
+  .footer-upper { grid-template-columns: 2fr 1fr 1fr 1fr; padding-block: var(--space-12); }
 }
 
 
@@ -335,9 +337,10 @@ button {
     gap: var(--space-2);
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-weight: 700;
-    font-size: var(--text-lg);
+    font-size: clamp(1rem, 0.9rem + 0.5vw, var(--text-lg));
     letter-spacing: -0.01em;
     color: var(--color-text);
+    flex-shrink: 0;
 }
 
 .brand-logo:hover {
@@ -378,7 +381,10 @@ button {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-2);
+}
+@media (min-width: 768px) {
+    .nav-actions { gap: var(--space-4); }
 }
 
 .theme-toggle {
@@ -437,7 +443,7 @@ button {
             top: 0;
             right: 0;
             bottom: 0;
-            width: min(320px, 90vw);
+            width: min(320px, 85vw);
             background-color: var(--color-surface);
             border-left: 1px solid var(--color-border);
             z-index: 200;
@@ -446,6 +452,8 @@ button {
             display: flex;
             flex-direction: column;
             padding: var(--space-6);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
 }
 
 .mobile-menu-drawer.open {
@@ -601,8 +609,49 @@ table {
 @media (max-width: 768px) {
   .btn {
     min-height: 44px;
+    padding: 0 var(--space-4);
+    font-size: var(--text-sm);
   }
   .nav-link {
     padding: var(--space-2) 0;
+  }
+}
+
+/* Small phone adjustments (375px and below) */
+@media (max-width: 375px) {
+  :root {
+    --nav-height: 56px;
+  }
+  .container {
+    padding-inline: var(--space-3);
+  }
+  .brand-logo svg {
+    width: 22px;
+    height: 22px;
+  }
+  .btn {
+    height: 40px;
+    padding: 0 var(--space-3);
+    font-size: var(--text-xs);
+  }
+}
+
+/* Tablet landscape specific (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  :root {
+    --nav-height: 68px;
+  }
+  .nav-links {
+    gap: var(--space-4);
+  }
+  .nav-link {
+    font-size: var(--text-xs);
+  }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+  :root {
+    --nav-height: 72px;
   }
 }

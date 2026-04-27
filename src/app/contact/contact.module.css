@@ -68,11 +68,11 @@
   gap: var(--space-8);
   padding: var(--space-8) 0;
   grid-template-columns: 1fr;
+  max-width: 640px;
 }
 @media (min-width: 768px) {
   .contactGrid {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-12);
+    padding: var(--space-12) 0;
   }
 }
 
@@ -282,8 +282,14 @@
     background: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-xl);
-    padding: var(--space-8);
+    padding: var(--space-6);
     margin-top: var(--space-8);
+}
+
+@media (min-width: 640px) {
+    .responseBox {
+        padding: var(--space-8);
+    }
 }
 
 .responseBox h4 {

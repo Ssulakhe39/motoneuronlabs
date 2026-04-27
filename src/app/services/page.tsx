@@ -26,8 +26,8 @@ export default function Services() {
               <p className={styles.sub}>Every engagement starts with your stack, your team, and your constraints. We build around you — not the other way around.</p>
               
               <div className={styles.heroCtas}>
-                <Link href="/contact" className="btn btn-primary">Schedule a Discovery Call</Link>
-                <Link href="/case-studies" className="btn btn-secondary">See Case Studies</Link>
+                <Link href="/contact" className="btn btn-primary">Start a Project</Link>
+                <Link href="/services" className="btn btn-secondary">See Our Services</Link>
               </div>
             </div>
           </ScrollReveal>
@@ -50,9 +50,9 @@ export default function Services() {
                 <rect x="0" y="36" width="120" height="48" rx="8" stroke="var(--color-border)" strokeWidth="1" />
                 <text x="60" y="64" fontFamily="Inter, sans-serif" fontSize="12" fill="var(--color-text-muted)" textAnchor="middle">Your Systems</text>
 
-                {/* Box: MotoNeuron Layer */}
+                {/* Box: Motoneuron Layer */}
                 <rect x="180" y="36" width="100" height="48" rx="8" stroke="var(--color-primary)" strokeWidth="1" fill="color-mix(in srgb, var(--color-primary) 5%, transparent)" />
-                <text x="230" y="64" fontFamily="Inter, sans-serif" fontSize="12" fill="var(--color-primary)" textAnchor="middle">MotoNeuron Layer</text>
+                <text x="230" y="64" fontFamily="Inter, sans-serif" fontSize="12" fill="var(--color-primary)" textAnchor="middle">Motoneuron Layer</text>
 
                 {/* Box: AI Models */}
                 <rect x="340" y="36" width="110" height="48" rx="8" stroke="var(--color-border)" strokeWidth="1" />
@@ -204,7 +204,7 @@ export default function Services() {
               {/* Step 1 */}
               <div className={styles.engagementStep}>
                 <div className={styles.stepCircle}>1</div>
-                <h3 className={styles.stepTitle}>Discovery Call</h3>
+                <h3 className={styles.stepTitle}>Initial Call</h3>
                 <p className={styles.stepDesc}>We learn your goals, constraints, and existing tech stack in 60 minutes.</p>
               </div>
               {/* Step 2 */}
@@ -236,8 +236,8 @@ export default function Services() {
           <CtaBanner 
             title="Ready to Build AI That Actually Works?"
             description="Talk to our team. We'll scope your first AI use case in 48 hours."
-            secondaryHref="/case-studies" 
-            secondaryLabel="Read Case Studies" 
+            secondaryHref="/services" 
+            secondaryLabel="See Our Services" 
           />
         </div>
       </ScrollReveal>

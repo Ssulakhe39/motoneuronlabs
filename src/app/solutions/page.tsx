@@ -172,8 +172,8 @@ export default function Solutions() {
           <CtaBanner 
             title="Ready to Build AI That Actually Works?"
             description="Talk to our team. We'll scope your first AI use case in 48 hours."
-            secondaryHref="/case-studies" 
-            secondaryLabel="Read Case Studies" 
+            secondaryHref="/services" 
+            secondaryLabel="See Our Services" 
           />
         </div>
       </ScrollReveal>

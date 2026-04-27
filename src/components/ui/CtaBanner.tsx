@@ -12,11 +12,11 @@ interface CtaBannerProps {
 export function CtaBanner({
   title = "Ready to Build AI That Actually Works?",
   description = "Talk to our team. We'll scope your first AI use case in 48 hours.",
-  secondaryHref = "/case-studies",
-  secondaryLabel = "Read Case Studies"
+  secondaryHref = "/services",
+  secondaryLabel = "See Our Services"
 }: CtaBannerProps) {
   return (
-    <section className={styles.ctaBanner} aria-label="Start a project with MotoNeuron Labs">
+    <section className={styles.ctaBanner} aria-label="Start a project with Motoneuron Labs">
       <div className="container">
         <h2>{title}</h2>
         <p>{description}</p>
@@ -26,7 +26,7 @@ export function CtaBanner({
             className="btn btn-primary" 
             style={{ fontSize: 'var(--text-base)', height: '52px', padding: '0 var(--space-8)' }}
           >
-            Schedule a Discovery Call 
+            Start a Project 
             <ArrowRight size={18} />
           </Link>
           <Link 
